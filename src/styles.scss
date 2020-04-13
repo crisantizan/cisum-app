@@ -30,3 +30,4 @@ $cisum-app-theme: mat-light-theme($cisum-app-primary, $cisum-app-accent, $cisum-
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import './assets/scss/main.scss';
