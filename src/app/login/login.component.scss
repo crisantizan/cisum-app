@@ -21,10 +21,9 @@
       "form form image"
       "form form image";
 
-    max-width: 700px;
-    // margin: 0 auto;
-    background-color: rgba($color: #000000, $alpha: 0.5);
-    box-shadow: 0px 0px 20px -12px rgb(80, 3, 80);
+    max-width: 600px;
+    background-color: rgba($color: #000000, $alpha: 0.75);
+    box-shadow: 0px 0px 20px -12px rgb(53, 52, 52);
     padding: 0;
     border-radius: 5px;
 
@@ -53,6 +52,12 @@
           text-decoration: none;
           color: $color-primary;
         }
+      }
+
+      .login-btn {
+        display: block;
+        width: 100%;
+        margin-top: 0.5rem;
       }
     }
 
@@ -85,6 +90,7 @@
       .login-image {
         height: 100px;
         border-radius: 0;
+        background-position: center;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
       }
