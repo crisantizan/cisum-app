@@ -1,47 +1,108 @@
 @import "../../assets/scss/variables";
+.login-container {
+  display: flex;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-.login-card {
-  max-width: 700px;
-  margin: 10% auto;
-  background-color: rgba($color: #000000, $alpha: 0.5);
-  box-shadow: 0px 0px 20px -12px rgb(80, 3, 80);
-  padding: 0;
-  border-radius: 5px;
-
-  .login-form {
-    padding: 1rem;
-    grid-column: 1/5;
-
-    mat-form-field {
-      input {
-        padding-left: 5px;
-      }
-
-      mat-label {
-        margin-left: 5px;
-      }
-    }
-
-    p {
-      margin: 1rem 0 0 0;
-
-      a {
-        text-decoration: none;
-        color: $color-primary;
-      }
-    }
+  .login-title {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    padding: 0;
   }
 
-  .mat-card-content {
+  .login-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      "form form image"
+      "form form image";
+
+    max-width: 700px;
+    // margin: 0 auto;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    box-shadow: 0px 0px 20px -12px rgb(80, 3, 80);
+    padding: 0;
+    border-radius: 5px;
+
+    .login-form {
+      padding: 2rem 1rem 2rem 1rem;
+      grid-area: form;
+
+      mat-card-title {
+        margin-bottom: 1rem;
+      }
+
+      mat-form-field {
+        input {
+          padding-left: 5px;
+        }
+
+        mat-label {
+          margin-left: 5px;
+        }
+      }
+
+      p {
+        margin: 1rem 0 0 0;
+
+        a {
+          text-decoration: none;
+          color: $color-primary;
+        }
+      }
+    }
+
+    .login-image {
+      grid-area: image;
+      background-image: url("../../assets/svg/cover-login.svg");
+      background-size: cover;
+      background-position: right;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
     .mat-form-field {
       width: 100%;
     }
   }
 }
 
-.login-flex {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+/* Small (sm) */
+@media (max-width: 640px) {
+  .login-container {
+    .login-card {
+      grid-template-areas:
+        "image image image"
+        "form form form";
+
+      .login-form {
+        padding: 1rem;
+      }
+      .login-image {
+        height: 100px;
+        border-radius: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+    }
+  }
+}
+
+/* Medium (md) */
+@media (min-width: 768px) {
+  /* ... */
+}
+
+/* Large (lg) */
+@media (min-width: 1024px) {
+  /* ... */
+}
+
+/* Extra Large (xl) */
+@media (min-width: 1280px) {
+  /* ... */
 }
