@@ -1,0 +1,8 @@
+.mat-dialog-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, auto);
+  mat-form-field {
+    width: 100%;
+  }
+}

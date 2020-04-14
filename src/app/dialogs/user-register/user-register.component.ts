@@ -7,6 +7,8 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./user-register.component.scss'],
 })
 export class UserRegisterComponent implements OnInit {
+  public hidePass: boolean = true;
+
   constructor(public dialogRef: MatDialogRef<UserRegisterComponent>) {}
 
   onNoClick(): void {

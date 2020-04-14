@@ -1,1 +1,40 @@
-<p>user-register works!</p>
+<h1 mat-dialog-title>Register</h1>
+<section mat-dialog-content>
+  <!-- name -->
+  <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">
+    <mat-label>Name</mat-label>
+    <mat-icon matPrefix>person_outline</mat-icon>
+    <input matInput autofocus />
+  </mat-form-field>
+
+  <!-- surname -->
+  <mat-form-field appGridArea="surname" class="has-icon" appearance="legacy">
+    <mat-label>Surname</mat-label>
+    <mat-icon matPrefix>person_outline</mat-icon>
+    <input matInput />
+  </mat-form-field>
+
+  <!-- email -->
+  <mat-form-field appGridArea="email" class="has-icon" appearance="legacy">
+    <mat-label>Email</mat-label>
+    <!-- <mat-icon matPrefix>person_outline</mat-icon> -->
+    <input matInput />
+  </mat-form-field>
+  <!-- email -->
+
+  <!-- password -->
+  <mat-form-field appGridArea="password" class="has-icon" appearance="legacy">
+    <mat-label>Password</mat-label>
+    <mat-icon matPrefix>vpn_key</mat-icon>
+    <input matInput [type]="hidePass ? 'password' : 'text'" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hidePass = !hidePass"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hidePass"
+    >
+      <mat-icon>{{ hidePass ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+</section>
