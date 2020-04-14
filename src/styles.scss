@@ -11,25 +11,26 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$cisum-app-primary: mat-palette($mat-indigo);
-$cisum-app-accent: mat-palette($mat-pink, A200, A100, A400);
+// $cisum-app-primary: mat-palette($mat-deep-purple, 900);
+// $cisum-app-accent: mat-palette($mat-pink, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
-$cisum-app-warn: mat-palette($mat-red);
+// // The warn palette is optional (defaults to red).
+// $cisum-app-warn: mat-palette($mat-red);
 
-// Create the theme object (a Sass map containing all of the palettes).
-$cisum-app-theme: mat-light-theme(
-  $cisum-app-primary,
-  $cisum-app-accent,
-  $cisum-app-warn
-);
+// // Create the theme object (a Sass map containing all of the palettes).
+// $cisum-app-theme: mat-light-theme(
+//   $cisum-app-primary,
+//   $cisum-app-accent,
+//   $cisum-app-warn
+// );
 
 // Define an alternate dark theme.
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
-$dark-warn:    mat-palette($mat-deep-orange);
+// $dark-primary: mat-palette($mat-deep-purple, 900);
+// $dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+// $dark-warn:    mat-palette($mat-deep-orange);
+@import '../src/assets/scss/variables';
 
-$dark-theme: mat-dark-theme($cisum-app-primary, $dark-accent, $dark-warn);
+$dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.

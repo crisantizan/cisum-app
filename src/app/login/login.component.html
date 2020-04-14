@@ -1,20 +1,47 @@
 <section>
   <mat-card class="login-card">
-    <mat-card-title>
+    <!-- <mat-card-title>
       Login
-    </mat-card-title>
-    <mat-card-content>
-      <!-- nick -->
-      <mat-form-field appearance="legacy">
-        <mat-label>Nick</mat-label>
-        <input matInput />
-      </mat-form-field>
+    </mat-card-title> -->
+    <!-- <mat-card-header>
+    </mat-card-header> -->
+    <!-- <mat-icon mat-card-image svgIcon="guitar-man" style="width: 500px; height: 500px;"></mat-icon> -->
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
 
-      <!-- password -->
-      <mat-form-field appearance="legacy">
-        <mat-label>Password</mat-label>
-        <input matInput />
-      </mat-form-field>
+    <mat-card-content>
+      <div class="login-flex">
+        <div class="login-form">
+          <mat-card-title>
+            Log into your account
+          </mat-card-title>
+          <!-- nick -->
+          <mat-form-field appearance="legacy">
+            <mat-label>Nick</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <!-- password -->
+          <mat-form-field appearance="legacy">
+            <mat-label>Password</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <button mat-raised-button color="primary">LOGIN</button>
+          <p>
+            Don't have an account? <a href="javascript:void(0)">register</a>
+          </p>
+        </div>
+        <div
+          style="
+            grid-column: 5/-1;
+            background-image: url('../../assets/svg/cover-login.svg');
+            background-size: cover;
+            background-position: right;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+          "
+        ></div>
+      </div>
     </mat-card-content>
   </mat-card>
 </section>
