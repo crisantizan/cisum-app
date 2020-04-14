@@ -23,40 +23,16 @@
     </mat-form-field>
 
     <!-- password -->
-    <mat-form-field appGridArea="password" class="has-icon" appearance="legacy">
-      <mat-label>Password</mat-label>
-      <mat-icon matPrefix>vpn_key</mat-icon>
-      <input matInput [type]="hidePass ? 'password' : 'text'" />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hidePass = !hidePass"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hidePass"
-      >
-        <mat-icon>{{ hidePass ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
-    </mat-form-field>
+    <app-password-field
+      appGridArea="password"
+      label="Password"
+    ></app-password-field>
 
     <!-- verify password -->
-    <mat-form-field
+    <app-password-field
       appGridArea="verify-password"
-      class="has-icon"
-      appearance="legacy"
-    >
-      <mat-label>Verify password</mat-label>
-      <mat-icon matPrefix>vpn_key</mat-icon>
-      <input matInput [type]="hidePass ? 'password' : 'text'" />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hidePass = !hidePass"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hidePass"
-      >
-        <mat-icon>{{ hidePass ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
-    </mat-form-field>
+      label="Verify password"
+    ></app-password-field>
   </section>
 
   <section mat-dialog-actions>
