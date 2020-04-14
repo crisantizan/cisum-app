@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables";
+@import "../../assets/scss/variables", "../../assets/scss/mixin-media-queries";
 .login-container {
   display: flex;
   height: 90%;
@@ -76,8 +76,7 @@
   }
 }
 
-/* Small (sm) */
-@media (max-width: 640px) {
+@include media(xs) {
   .login-container {
     .login-card {
       grid-template-areas:
@@ -96,19 +95,4 @@
       }
     }
   }
-}
-
-/* Medium (md) */
-@media (min-width: 768px) {
-  /* ... */
-}
-
-/* Large (lg) */
-@media (min-width: 1024px) {
-  /* ... */
-}
-
-/* Extra Large (xl) */
-@media (min-width: 1280px) {
-  /* ... */
 }
