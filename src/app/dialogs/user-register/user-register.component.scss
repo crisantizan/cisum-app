@@ -1,8 +1,35 @@
+@import "../../../assets/scss/mixin-media-queries";
+
 .mat-dialog-content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, auto);
+  gap: 10px;
+  grid-auto-rows: minmax(400);
+
+  grid-template-areas:
+    "name surname"
+    "email email"
+    "password verify-password";
+
   mat-form-field {
     width: 100%;
+  }
+}
+
+.mat-dialog-actions {
+  padding-top: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+@include media(xs) {
+  .mat-dialog-content {
+    grid-template-areas:
+      "name name"
+      "surname surname"
+      "email email"
+      "password password"
+      "verify-password verify-password";
   }
 }

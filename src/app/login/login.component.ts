@@ -13,10 +13,14 @@ export class LoginComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    // this.openRegisterDialog();
+    this.openRegisterDialog();
   }
 
   public openRegisterDialog() {
-    this.dialog.open(UserRegisterComponent, { maxWidth: 600 });
+    this.dialog.open(UserRegisterComponent, {
+      maxWidth: 600,
+      autoFocus: true,
+      disableClose: true,
+    });
   }
 }
