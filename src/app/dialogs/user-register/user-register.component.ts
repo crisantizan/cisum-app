@@ -9,6 +9,7 @@ import {
 import { regex } from '../../common/helpers/regex.helper';
 import { CustomValidators } from 'src/app/common/custom-validators';
 import { DialogService } from 'src/app/services/dialog.service';
+import { propsObjectEmpty } from 'src/app/common/helpers/object.helper';
 
 @Component({
   selector: 'app-user-register',
@@ -40,10 +41,6 @@ export class UserRegisterComponent implements OnInit {
     });
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   ngOnInit(): void {
     // update validator when password change
     this.password.valueChanges.subscribe((value) => {
@@ -66,10 +63,18 @@ export class UserRegisterComponent implements OnInit {
   }
 
   public onCancel() {
+    // close this dialog
+    if (propsObjectEmpty(this.form.value)) {
+      this.dialogRef.close();
+      return;
+    }
+
     this.dialogService
-      .openConfirm({ title: 'Test title' })
+      .openConfirm({ body: 'All data entered will be lost' })
       .subscribe((response) => {
-        console.log({ response });
+        if (response) {
+          this.dialogRef.close();
+        }
       });
   }
 
