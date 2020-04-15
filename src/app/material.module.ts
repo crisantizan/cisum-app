@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MaterialErrorStateMatcher } from './common/helpers/material-error-matcher.helper';
 
 @NgModule({
   declarations: [],
@@ -32,6 +34,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatDialogModule,
     MatGridListModule,
+  ],
+  providers: [
+    {
+      provide: ErrorStateMatcher,
+      useClass: MaterialErrorStateMatcher,
+    },
   ],
 })
 export class MaterialModule {}

@@ -5,14 +5,16 @@
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">
       <mat-label>Name</mat-label>
       <mat-icon matPrefix>person_outline</mat-icon>
-      <input matInput formControlName="name" required />
+      <input matInput formControlName="name" required autocomplete="off" />
+      <mat-error>{{ showNameError() }}</mat-error>
     </mat-form-field>
 
     <!-- surname -->
     <mat-form-field appGridArea="surname" class="has-icon" appearance="legacy">
       <mat-label>Surname</mat-label>
       <mat-icon matPrefix>person_outline</mat-icon>
-      <input matInput formControlName="surname" required />
+      <input matInput formControlName="surname" required autocomplete="off" />
+      <mat-error>{{ showSurnameError() }}</mat-error>
     </mat-form-field>
 
     <!-- email -->
@@ -24,7 +26,8 @@
     >
       <mat-label>Email</mat-label>
       <mat-icon matPrefix>alternate_email</mat-icon>
-      <input matInput formControlName="email" required />
+      <input matInput formControlName="email" required autocomplete="off" />
+      <mat-error>{{ showEmailError() }}</mat-error>
     </mat-form-field>
 
     <!-- password -->
@@ -36,8 +39,10 @@
         required
         formControlName="password"
         [type]="hidePass.new ? 'password' : 'text'"
+        autocomplete="off"
         type="text"
       />
+      <mat-error>{{ showPasswordError() }}</mat-error>
       <button
         mat-icon-button
         matSuffix
@@ -60,8 +65,10 @@
         required
         [type]="hidePass.verify ? 'password' : 'text'"
         formControlName="verifyPassword"
+        autocomplete="off"
         type="text"
       />
+      <mat-error>{{ showVerifyPasswordError() }}</mat-error>
       <button
         mat-icon-button
         matSuffix
@@ -78,6 +85,13 @@
 
   <section mat-dialog-actions>
     <button mat-flat-button mat-dialog-close>CANCEL</button>
-    <button mat-raised-button color="primary" type="submit">CREATE</button>
+    <button
+      [disabled]="form.invalid"
+      mat-raised-button
+      color="primary"
+      type="submit"
+    >
+      CREATE
+    </button>
   </section>
 </form>

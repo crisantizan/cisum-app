@@ -3,7 +3,7 @@
 
 $app-primary: mat-palette($mat-orange);
 $app-accent: mat-palette($mat-amber, A200, A100, A400);
-$app-warn: mat-palette($mat-red, 500);
+$app-warn: mat-palette($mat-red);
 
 $color-primary: mat-color($app-primary);
 $color-accent: mat-color($app-accent);
