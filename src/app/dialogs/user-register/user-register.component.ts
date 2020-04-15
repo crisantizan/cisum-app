@@ -53,6 +53,16 @@ export class UserRegisterComponent implements OnInit {
     });
   }
 
+  public onSubmit() {
+    console.log('entró');
+    if (this.form.invalid) {
+      return;
+    }
+
+    // good
+    console.log('... on submit');
+  }
+
   get name(): AbstractControl {
     return this.form.get('name');
   }

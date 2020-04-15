@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Create account</h1>
-<form [formGroup]="form">
+<form [formGroup]="form" (submit)="onSubmit()">
   <section mat-dialog-content>
     <!-- name -->
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">
@@ -40,15 +40,15 @@
         formControlName="password"
         [type]="hidePass.new ? 'password' : 'text'"
         autocomplete="off"
-        type="text"
       />
       <mat-error>{{ showPasswordError() }}</mat-error>
       <button
+        (click)="hidePass.new = !hidePass.new"
         mat-icon-button
         matSuffix
-        (click)="hidePass.new = !hidePass.new"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hidePass.new"
+        type="button"
       >
         <mat-icon>{{
           hidePass.new ? "visibility_off" : "visibility"
@@ -66,7 +66,6 @@
         [type]="hidePass.verify ? 'password' : 'text'"
         formControlName="verifyPassword"
         autocomplete="off"
-        type="text"
       />
       <mat-error>{{ showVerifyPasswordError() }}</mat-error>
       <button
@@ -75,6 +74,7 @@
         (click)="hidePass.verify = !hidePass.verify"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hidePass.verify"
+        type="button"
       >
         <mat-icon>{{
           hidePass.verify ? "visibility_off" : "visibility"
