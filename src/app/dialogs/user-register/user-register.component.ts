@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import {
   FormBuilder,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { regex } from '../../common/helpers/regex.helper';
 import { CustomValidators } from 'src/app/common/custom-validators';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-user-register',
@@ -19,8 +20,9 @@ export class UserRegisterComponent implements OnInit {
   public form: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<UserRegisterComponent>,
-    public fb: FormBuilder
+    private dialogRef: MatDialogRef<UserRegisterComponent>,
+    public fb: FormBuilder,
+    private dialogService: DialogService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -61,6 +63,14 @@ export class UserRegisterComponent implements OnInit {
 
     // good
     console.log('... on submit');
+  }
+
+  public onCancel() {
+    this.dialogService
+      .openConfirm({ title: 'Test title' })
+      .subscribe((response) => {
+        console.log({ response });
+      });
   }
 
   get name(): AbstractControl {

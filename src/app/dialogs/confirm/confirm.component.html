@@ -1,0 +1,8 @@
+<p mat-dialog-title>{{ (!!data && data.title) || "Are you sure?" }}</p>
+<section mat-dialog-content>
+  {{ (!!data && data.body) || "This action cannot be reversed" }}
+</section>
+<section mat-dialog-actions style="display: flex; justify-content: flex-end;">
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">Ok</button>
+</section>

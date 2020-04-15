@@ -31,7 +31,7 @@
     </mat-form-field>
 
     <!-- password -->
-    <mat-form-field class="has-icon" appearance="legacy">
+    <mat-form-field appGridArea="password" class="has-icon" appearance="legacy">
       <mat-label>Password</mat-label>
       <mat-icon matPrefix>vpn_key</mat-icon>
       <input
@@ -57,7 +57,11 @@
     </mat-form-field>
 
     <!-- verify password -->
-    <mat-form-field class="has-icon" appearance="legacy">
+    <mat-form-field
+      appGridArea="verify-password"
+      class="has-icon"
+      appearance="legacy"
+    >
       <mat-label>Verify password</mat-label>
       <mat-icon matPrefix>vpn_key</mat-icon>
       <input
@@ -84,7 +88,7 @@
   </section>
 
   <section mat-dialog-actions>
-    <button mat-flat-button mat-dialog-close>CANCEL</button>
+    <button mat-flat-button type="button" (click)="onCancel()">CANCEL</button>
     <button
       [disabled]="form.invalid"
       mat-raised-button

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { MaterialModule } from '../material.module';
-import { DialogsModule } from '../dialogs/dialogs.module';
 import { DirectivesModule } from '../common/directives/directives.module';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { DirectivesModule } from '../common/directives/directives.module';
     CommonModule,
     LoginRoutingModule,
     MaterialModule,
-    DialogsModule,
     DirectivesModule,
   ],
 })

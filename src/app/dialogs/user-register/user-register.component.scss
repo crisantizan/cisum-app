@@ -5,7 +5,6 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, auto);
   gap: 10px;
-  grid-auto-rows: minmax(400);
 
   grid-template-areas:
     "name surname"
@@ -13,7 +12,7 @@
     "password verify-password";
 
   mat-form-field {
-    width: 100%;
+    // width: 100%;
   }
 }
 
