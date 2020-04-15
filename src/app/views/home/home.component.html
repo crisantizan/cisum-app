@@ -1,1 +1,10 @@
-<p>home works!</p>
+<mat-sidenav-container class="example-container" style="height: 100%;">
+  <!-- (backdropClick)="close('backdrop')" -->
+  <mat-sidenav #sidenav opened  style="width: 150px;" disableClose>
+    <p><button mat-button (click)="close('toggle button')">Toggle</button></p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <button routerLink="/login" mat-button>login</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>

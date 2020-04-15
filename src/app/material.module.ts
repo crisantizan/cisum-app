@@ -7,9 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MaterialErrorStateMatcher } from './common/helpers/material-error-matcher.helper';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [],
@@ -22,7 +22,7 @@ import { MaterialErrorStateMatcher } from './common/helpers/material-error-match
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatGridListModule,
+    MatSidenavModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -33,7 +33,7 @@ import { MaterialErrorStateMatcher } from './common/helpers/material-error-match
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatGridListModule,
+    MatSidenavModule,
   ],
   providers: [
     {
