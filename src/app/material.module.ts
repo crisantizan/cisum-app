@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MaterialErrorStateMatcher } from './common/helpers/material-error-matcher.helper';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [],
@@ -23,6 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatIconModule,
     MatDialogModule,
     MatSidenavModule,
+    MatToolbarModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -34,6 +36,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatIconModule,
     MatDialogModule,
     MatSidenavModule,
+    MatToolbarModule,
   ],
   providers: [
     {

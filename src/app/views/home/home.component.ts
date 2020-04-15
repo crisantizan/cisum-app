@@ -2,6 +2,11 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { mediaQuery } from 'src/app/common/helpers/match-media.helper';
+interface SidenavOptions {
+  disabledClosed: boolean;
+  opened: boolean;
+  mode: 'over' | 'side';
+}
 
 @Component({
   selector: 'app-home',
@@ -13,17 +18,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  reason = '';
-
-  close(reason: string) {
-    this.reason = reason;
-    this.sidenav.close();
-  }
+  public sidenavOptions: SidenavOptions = {
+    disabledClosed: false,
+    opened: false,
+    mode: 'over',
+  };
 
   ngOnInit(): void {
-    const x = this.breakpointObserver.observe(mediaQuery('xs'));
+    const xs = this.breakpointObserver.observe([
+      mediaQuery('sm'),
+      mediaQuery('md'),
+    ]);
 
-    x.subscribe((obs) => {
+    xs.subscribe((obs) => {
       console.log(obs);
     });
   }

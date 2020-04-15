@@ -7,13 +7,11 @@
   gap: 10px;
 
   grid-template-areas:
-    "name surname"
-    "email email"
-    "password verify-password";
-
-  mat-form-field {
-    // width: 100%;
-  }
+  "name name"
+  "surname surname"
+  "email email"
+  "password password"
+  "verify-password verify-password";
 }
 
 .mat-dialog-actions {
@@ -22,13 +20,11 @@
   justify-content: space-between;
 }
 
-@include media(xs) {
+@include media(sm) {
   .mat-dialog-content {
     grid-template-areas:
-      "name name"
-      "surname surname"
-      "email email"
-      "password password"
-      "verify-password verify-password";
+    "name surname"
+    "email email"
+    "password verify-password";
   }
 }
