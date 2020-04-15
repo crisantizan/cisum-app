@@ -1,38 +1,79 @@
 <h1 mat-dialog-title>Create account</h1>
-<form formGroup="">
+<form [formGroup]="form">
   <section mat-dialog-content>
     <!-- name -->
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">
       <mat-label>Name</mat-label>
       <mat-icon matPrefix>person_outline</mat-icon>
-      <input matInput />
+      <input matInput formControlName="name" required />
     </mat-form-field>
 
     <!-- surname -->
     <mat-form-field appGridArea="surname" class="has-icon" appearance="legacy">
       <mat-label>Surname</mat-label>
       <mat-icon matPrefix>person_outline</mat-icon>
-      <input matInput />
+      <input matInput formControlName="surname" required />
     </mat-form-field>
 
     <!-- email -->
-    <mat-form-field appGridArea="email" class="has-icon" appearance="legacy">
+    <mat-form-field
+      disabled
+      appGridArea="email"
+      class="has-icon"
+      appearance="legacy"
+    >
       <mat-label>Email</mat-label>
       <mat-icon matPrefix>alternate_email</mat-icon>
-      <input matInput />
+      <input matInput formControlName="email" required />
     </mat-form-field>
 
     <!-- password -->
-    <app-password-field
-      appGridArea="password"
-      label="Password"
-    ></app-password-field>
+    <mat-form-field class="has-icon" appearance="legacy">
+      <mat-label>Password</mat-label>
+      <mat-icon matPrefix>vpn_key</mat-icon>
+      <input
+        matInput
+        required
+        formControlName="password"
+        [type]="hidePass.new ? 'password' : 'text'"
+        type="text"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePass.new = !hidePass.new"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePass.new"
+      >
+        <mat-icon>{{
+          hidePass.new ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </mat-form-field>
 
     <!-- verify password -->
-    <app-password-field
-      appGridArea="verify-password"
-      label="Verify password"
-    ></app-password-field>
+    <mat-form-field class="has-icon" appearance="legacy">
+      <mat-label>Verify password</mat-label>
+      <mat-icon matPrefix>vpn_key</mat-icon>
+      <input
+        matInput
+        required
+        [type]="hidePass.verify ? 'password' : 'text'"
+        formControlName="verifyPassword"
+        type="text"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePass.verify = !hidePass.verify"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePass.verify"
+      >
+        <mat-icon>{{
+          hidePass.verify ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </mat-form-field>
   </section>
 
   <section mat-dialog-actions>
