@@ -18,20 +18,30 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  public sidenavOptions: SidenavOptions = {
-    disabledClosed: false,
-    opened: false,
-    mode: 'over',
-  };
+  public sidenavOptions: SidenavOptions;
+  public desktopView: boolean;
 
   ngOnInit(): void {
-    const xs = this.breakpointObserver.observe([
-      mediaQuery('sm'),
-      mediaQuery('md'),
-    ]);
+    const sm = this.breakpointObserver.observe(mediaQuery('sm'));
 
-    xs.subscribe((obs) => {
-      console.log(obs);
+    sm.subscribe((obs) => {
+      if (!obs.matches) {
+        this.desktopView = false;
+
+        this.sidenavOptions = {
+          disabledClosed: false,
+          opened: false,
+          mode: 'over',
+        };
+        return;
+      }
+
+      this.desktopView = true;
+      this.sidenavOptions = {
+        disabledClosed: true,
+        opened: true,
+        mode: 'side',
+      };
     });
   }
 

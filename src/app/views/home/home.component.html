@@ -4,18 +4,63 @@
     #sidenav
     [opened]="sidenavOptions.opened"
     [mode]="sidenavOptions.mode"
-    style="width: 150px;"
+    style="width: 72px;"
     [disableClose]="sidenavOptions.disabledClosed"
   >
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar>
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      Cisum
+      <nav>
+        <div>
+          <button mat-icon-button>
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>account_balance</mat-icon>
+          </button>
+          <div class="custom-input">
+            <mat-icon>search</mat-icon>
+            <input placeholder="Search" />
+          </div>
+          <!-- <button mat-button [matMenuTriggerFor]="searchMenu">
+            <mat-icon>search</mat-icon>
+          </button> -->
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <img
+            src="https://www.w3schools.com/howto/img_avatar.png"
+            alt="Avatar"
+            class="avatar"
+          />
+        </button>
+      </nav>
+
+      <!-- <button *ngIf="!desktopView" mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    Cisum -->
     </mat-toolbar>
     <button routerLink="/login" mat-button>login</button>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>edit</mat-icon>
+    <span>Edit my data</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Close session</span>
+  </button>
+</mat-menu>
+
+<mat-menu #searchMenu="matMenu">
+  <div mat-menu-item style="width: 100%;">
+    <mat-form-field class="has-icon" appearance="legacy">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput autofocus />
+    </mat-form-field>
+  </div>
+</mat-menu>

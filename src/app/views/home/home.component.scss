@@ -1,0 +1,82 @@
+@import "../../../assets/scss/mixin-media-queries";
+
+.avatar {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.custom-input {
+  display: inline-flex;
+  position: relative;
+  min-width: 130px;
+  width: 60%;
+  max-width: 250px;
+
+  mat-icon {
+    position: absolute;
+    line-height: 36px;
+    padding-left: .5rem;
+    font-size: 18px;
+  }
+  input {
+    width: 100%;
+    background-color: transparent;
+    font-size: 14px;
+    color: white;
+    // height: 30px;
+    border: 1px solid rgba($color: #fff, $alpha: .15);
+    outline: none;
+    border-radius: 5px;
+    padding: .5rem 1rem .5rem 2.2rem;
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+}
+
+nav.mat-tab-nav-bar {
+  width: 100%;
+  border-bottom: none;
+
+  div .mat-tab-link-container {
+    .mat-tab-list {
+      // display: flex !important;
+      // justify-content: center !important;
+      // .mat-tab-links {
+      // }
+    }
+  }
+}
+
+mat-sidenav-container {
+  mat-sidenav-content {
+    mat-toolbar {
+      nav {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        button {
+          // height: 100%;
+          // padding: .5rem;
+        }
+      }
+    }
+  }
+}
+
+// mat-sidenav-container > mat-sidenav-content > mat-toolbar > nav > div.mat-tab-link-container > div {
+//   display: flex !important;
+//   justify-content: center !important;
+// }
+
+@include media(sm) {
+  .tab-nav {
+    a {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
