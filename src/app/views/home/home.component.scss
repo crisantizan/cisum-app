@@ -41,25 +41,28 @@ $font-color-secondary: rgba(
   }
 
   .last-artists {
-    width: 100%;
     border-radius: 5px;
     border: 1px solid rgba($color: #fff, $alpha: 0.1);
     padding: 1rem;
   }
 
+  .artists-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .artist-box {
-    box-sizing: border-box;
     position: relative;
     width: 150px;
     height: 200px;
     display: block;
-    overflow: hidden;
     padding: 0;
-    background-image: url("https://res.cloudinary.com/crisantizan/image/upload/c_fill,h_350,w_250/v1/cisum/artists/5e948c09b6065a001e40f2c5/vcz1gsfuxt9og6rrsfja");
     background-size: cover;
     transform: scale(1);
     transition: transform 100ms ease;
     border-radius: 5px;
+    margin: .5rem;
 
     &:hover {
       transform: scale(1.01);
