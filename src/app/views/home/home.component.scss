@@ -68,11 +68,11 @@ $font-color-secondary: rgba(
 
     span {
       position: absolute;
-      width: 87%;
+      width: 101%;
       display: block;
       bottom: 0px;
       padding: 10px;
-      background-color: rgba($color: #000000, $alpha: .9);
+      background-color: rgba($color: #000000, $alpha: 0.9);
     }
   }
 }
@@ -82,7 +82,7 @@ $font-color-secondary: rgba(
   position: relative;
   min-width: 130px;
   width: 60%;
-  max-width: 250px;
+  max-width: 350px;
 
   mat-icon {
     position: absolute;
@@ -95,11 +95,11 @@ $font-color-secondary: rgba(
     background-color: transparent;
     font-size: 14px;
     color: white;
-    // height: 30px;
     border: 1px solid rgba($color: #fff, $alpha: 0.15);
     outline: none;
     border-radius: 5px;
     padding: 0.5rem 1rem 0.5rem 2.2rem;
+
     &::placeholder {
       font-size: 14px;
     }
@@ -109,44 +109,12 @@ $font-color-secondary: rgba(
 nav.mat-tab-nav-bar {
   width: 100%;
   border-bottom: none;
-
-  // div .mat-tab-link-container {
-  //   // .mat-tab-list {
-  //     // display: flex !important;
-  //     // justify-content: center !important;
-  //     // .mat-tab-links {
-  //     // }
-  //   // }
-  // }
 }
 
-mat-sidenav-container {
-  mat-sidenav-content {
-    mat-toolbar {
-      nav {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-
-        button {
-          // height: 100%;
-          // padding: .5rem;
-        }
-      }
-    }
-  }
-}
-
-// mat-sidenav-container > mat-sidenav-content > mat-toolbar > nav > div.mat-tab-link-container > div {
-//   display: flex !important;
-//   justify-content: center !important;
-// }
-
-@include media(sm) {
-  .tab-nav {
-    a {
-      display: flex;
-      flex-direction: column;
-    }
+nav {
+  width: 100%;
+  .container {
+    display: flex;
+    justify-content: space-between;
   }
 }

@@ -5,20 +5,13 @@
 }
 
 .container {
-  max-width: 950px;
+  max-width: 900px;
   margin: 0 auto;
   width: 90%;
-  position: relative;
 }
 
 @include media(sm) {
   .container {
-    width: 95%;
-  }
-}
-
-@include media(md) {
-  .container {
-    width: 95%;
+    width: 85%;
   }
 }

@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MaterialErrorStateMatcher } from './common/helpers/material-error-matcher.helper';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
@@ -27,7 +26,6 @@ import { MatRippleModule } from '@angular/material/core';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatSidenavModule,
     MatToolbarModule,
     MatTabsModule,
     MatMenuModule,
@@ -43,7 +41,6 @@ import { MatRippleModule } from '@angular/material/core';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatSidenavModule,
     MatToolbarModule,
     MatTabsModule,
     MatMenuModule,

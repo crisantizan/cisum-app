@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { mediaQuery } from 'src/app/common/helpers/match-media.helper';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -19,8 +18,6 @@ interface SidenavOptions {
 })
 export class HomeComponent implements OnInit, OnDestroy {
   constructor(private breakpointObserver: BreakpointObserver) {}
-
-  @ViewChild('sidenav') sidenav: MatSidenav;
 
   public sidenavOptions: SidenavOptions;
   public desktopView: boolean;
