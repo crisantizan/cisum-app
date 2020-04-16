@@ -1,7 +1,12 @@
-<mat-card>
+<mat-card [class]="showBackdrop ? 'backdrop' : ''">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <div class="backdrop"></div>
   <!-- cover image -->
-  <div class="song-cover">
+  <div
+    class="song-cover"
+    (mouseenter)="mouseEnter()"
+    (mouseleave)="mouseLeave()"
+  >
     <mat-icon>play_arrow</mat-icon>
   </div>
 

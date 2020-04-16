@@ -1,5 +1,5 @@
-@import "../../../../assets/scss/mixin-media-queries", "../../../../assets/scss/variables";
-
+@import "../../../../assets/scss/mixin-media-queries",
+  "../../../../assets/scss/variables";
 
 mat-card {
   position: relative;
@@ -10,10 +10,37 @@ mat-card {
   z-index: 100;
   padding: 0;
 
+  &.backdrop {
+    .backdrop {
+      visibility: visible;
+    }
+  }
+
+  &.loading {
+    .backdrop {
+      visibility: visible;
+    }
+
+    mat-progress-bar {
+      display: block;
+    }
+  }
+
+  .backdrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 105;
+    visibility: hidden;
+    transition: all 100ms ease;
+  }
+
   mat-progress-bar {
     position: absolute;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    display: none;
   }
 
   .song-cover {
@@ -29,20 +56,25 @@ mat-card {
     &:hover {
       mat-icon {
         visibility: visible;
-        transform: scale(1.05);
+        transform: scale(1.1);
         cursor: pointer;
       }
     }
 
     mat-icon {
-      font-size: 8rem;
-      width: 8rem;
-      height: 8rem;
+      font-size: 5rem;
+      width: 100%;
+      height: 75%;
       margin-top: -3rem;
       visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       z-index: 110;
-      transform: scale(1);
-      transition: transform 500ms ease;
+      transition: transform 100ms ease-in-out;
+      color: $color-primary;
+      border: 1px solid rgba($color: #000000, $alpha: .7);
+      border-radius: 2px;
     }
   }
   .song-data {
