@@ -12,20 +12,12 @@
   <mat-sidenav-content>
     <mat-toolbar>
       <nav>
-        <div>
-          <button mat-icon-button>
-            <mat-icon>thumb_up</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>account_balance</mat-icon>
-          </button>
-          <div class="custom-input">
-            <mat-icon>search</mat-icon>
-            <input placeholder="Search" />
-          </div>
-          <!-- <button mat-button [matMenuTriggerFor]="searchMenu">
-            <mat-icon>search</mat-icon>
-          </button> -->
+        <button mat-icon-button [matMenuTriggerFor]="searchMenu">
+          <mat-icon>queue_music</mat-icon>
+        </button>
+        <div class="custom-input">
+          <mat-icon>search</mat-icon>
+          <input placeholder="Type a song title" />
         </div>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <img
@@ -35,11 +27,6 @@
           />
         </button>
       </nav>
-
-      <!-- <button *ngIf="!desktopView" mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    Cisum -->
     </mat-toolbar>
     <button routerLink="/login" mat-button>login</button>
   </mat-sidenav-content>
@@ -57,10 +44,12 @@
 </mat-menu>
 
 <mat-menu #searchMenu="matMenu">
-  <div mat-menu-item style="width: 100%;">
-    <mat-form-field class="has-icon" appearance="legacy">
-      <mat-icon matPrefix>search</mat-icon>
-      <input matInput autofocus />
-    </mat-form-field>
-  </div>
+  <button mat-menu-item>
+    <mat-icon>people_outline</mat-icon>
+    <span>Artists</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>album</mat-icon>
+    <span>Albums</span>
+  </button>
 </mat-menu>
