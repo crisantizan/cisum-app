@@ -23,8 +23,22 @@ export class AppComponent {
         )
       )
       .addSvgIcon(
-        '404',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/svg/404.svg')
+        'home-icon',
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../assets/svg/guitar.svg'
+        )
+      )
+      .addSvgIcon(
+        'skull',
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../assets/svg/skull.svg'
+        )
+      )
+      .addSvgIcon(
+        'maloik',
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../assets/svg/maloik.svg'
+        )
       );
   }
 }
