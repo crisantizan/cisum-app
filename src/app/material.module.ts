@@ -13,6 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatTabsModule,
     MatMenuModule,
+    MatAutocompleteModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -43,6 +45,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatTabsModule,
     MatMenuModule,
+    MatAutocompleteModule
   ],
   providers: [
     {

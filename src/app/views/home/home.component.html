@@ -17,7 +17,22 @@
         </button>
         <div class="custom-input">
           <mat-icon>search</mat-icon>
-          <input placeholder="Type a song title" />
+          <input
+            placeholder="Type a song title"
+            type="text"
+            placeholder="Search for a street"
+            [formControl]="searchControl"
+            [matAutocomplete]="auto"
+          />
+
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let song of filteredSongs | async"
+              [value]="song"
+            >
+              {{ song }}
+            </mat-option>
+          </mat-autocomplete>
         </div>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <img
