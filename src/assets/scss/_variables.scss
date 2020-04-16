@@ -8,3 +8,12 @@ $app-warn: mat-palette($mat-red);
 $color-primary: mat-color($app-primary);
 $color-accent: mat-color($app-accent);
 $color-warn: mat-color($app-warn);
+
+$font-color-primary: rgba(
+  $color: #fff,
+  $alpha: 0.8,
+);
+$font-color-secondary: rgba(
+  $color: #fff,
+  $alpha: 0.6,
+);
