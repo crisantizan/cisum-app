@@ -1,4 +1,4 @@
-<mat-card [class]="showBackdrop ? 'backdrop' : ''">
+<mat-card [ngClass]="{ backdrop: showBackdrop || disabled, loading: loading }">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   <div class="backdrop"></div>
   <!-- cover image -->
@@ -7,7 +7,7 @@
     (mouseenter)="mouseEnter()"
     (mouseleave)="mouseLeave()"
   >
-    <mat-icon>play_arrow</mat-icon>
+    <mat-icon (click)="onClickPlay()" disabled>play_arrow</mat-icon>
   </div>
 
   <!-- description -->

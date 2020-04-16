@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-song-box',
@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SongBoxComponent implements OnInit {
   public showBackdrop: boolean = false;
+  public loading: boolean = false;
+
+  @Input() public disabled: boolean = false;
+  @Output() public onloading = new EventEmitter<boolean>();
 
   constructor() {}
 
@@ -18,5 +22,20 @@ export class SongBoxComponent implements OnInit {
 
   public mouseLeave() {
     this.showBackdrop = false;
+  }
+
+  public onClickPlay() {
+    // avoid reload
+    if (this.loading) {
+      return;
+    }
+
+    this.loading = true;
+    this.onloading.emit(true);
+
+    setTimeout(() => {
+      this.loading = false;
+      this.onloading.emit(false);
+    }, 3000);
   }
 }

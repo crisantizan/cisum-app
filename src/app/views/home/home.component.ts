@@ -22,6 +22,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   public sidenavOptions: SidenavOptions;
   public desktopView: boolean;
 
+  /** when a song is loading */
+  public songLoading: boolean = false;
+
   public searchControl = new FormControl();
   public songs: string[] = [
     'Muse - Psycho',
