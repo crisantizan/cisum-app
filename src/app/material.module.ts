@@ -15,7 +15,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatRippleModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatAutocompleteModule,
     MatRippleModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule,
+    MatSliderModule,
+    MatButtonToggleModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -51,7 +53,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatAutocompleteModule,
     MatRippleModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule,
+    MatSliderModule,
+    MatButtonToggleModule,
   ],
   providers: [
     {

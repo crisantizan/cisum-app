@@ -1,4 +1,4 @@
-@import "./utilities";
+@import "./utilities", "./custom-mat-slider";
 
 .background-pattern {
   background-color: #0d0716;
@@ -20,4 +20,35 @@ mat-form-field {
 
 * {
   box-sizing: border-box;
+}
+
+.mat-menu-panel {
+  min-width: 50px !important;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* bar */
+::-webkit-scrollbar-thumb {
+  background: rgb(83, 83, 83);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba($color: #000000, $alpha: .5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(68, 68, 68);
 }

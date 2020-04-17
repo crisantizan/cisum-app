@@ -28,13 +28,13 @@
 // $dark-primary: mat-palette($mat-deep-purple, 900);
 // $dark-accent:  mat-palette($mat-amber, A200, A100, A400);
 // $dark-warn:    mat-palette($mat-deep-orange);
-@import '../src/assets/scss/variables';
+@import "../src/assets/scss/variables";
 
 $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme(/* $cisum-app-theme */$dark-theme);
+@include angular-material-theme(/* $cisum-app-theme */ $dark-theme);
 
 /* You can add global styles to this file, and also import other style files */
 

@@ -1,1 +1,58 @@
-<p>audio-player works!</p>
+<div class="audio-container mat-elevation-z8">
+  <div class="container" style="position: relative;">
+    <audio>
+      <source
+        src="https://res.cloudinary.com/crisantizan/video/upload/v1586791809/cisum-test/artists/5e9484fce0d8c02d9fc096e7/albums/5e94853ae0d8c02d9fc096e9/songs/5e948570e0d8c02d9fc096eb/dm3ascermabojv0pd6sv.mp3"
+      />
+      Your browers doesn't support the feature
+    </audio>
+
+    <div class="info">
+      <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" />
+      <div>
+        <span>Master of Puppets</span>
+        <span style="font-size: 12px;">Metallica</span>
+      </div>
+    </div>
+
+    <div class="player">
+      <div class="controls">
+        <!-- right -->
+        <button mat-icon-button style="display: none;">
+          <mat-icon>fast_rewind</mat-icon>
+        </button>
+        <!-- play -->
+        <button mat-icon-button class="play-btn">
+          <mat-icon>{{ playerIcon }}</mat-icon>
+        </button>
+        <!-- left -->
+        <button mat-icon-button style="display: none;">
+          <mat-icon>fast_forward</mat-icon>
+        </button>
+      </div>
+
+      <div class="progress">
+        <mat-slider
+          class="mat-slider-custom"
+          value=""
+          style="height: 45px;"
+        ></mat-slider>
+
+        <button mat-icon-button [matMenuTriggerFor]="sliderVolume">
+          <mat-icon>{{ volumeIcon }}</mat-icon>
+        </button>
+
+        <button mat-icon-button class="resize ripple">
+          <mat-icon>{{ resizeIcon }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- volume -->
+    <div class="volume"></div>
+  </div>
+</div>
+
+<mat-menu #sliderVolume="matMenu" yPosition="above">
+  <mat-slider value="50" vertical="vertical"></mat-slider>
+</mat-menu>
