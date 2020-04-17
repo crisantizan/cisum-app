@@ -44,6 +44,7 @@
         <button mat-icon-button [matMenuTriggerFor]="sliderVolume">
           <mat-icon>{{ volumeIcon }}</mat-icon>
         </button>
+        <span *ngIf="!!volume">{{ volume }}%</span>
 
         <!-- resize button -->
         <button mat-icon-button class="resize ripple" (click)="onResize()">
@@ -55,10 +56,9 @@
 </div>
 
 <mat-menu #sliderVolume="matMenu" class="mat-menu-volume" yPosition="above">
-  <span class="perc">{{ volume }}</span>
   <mat-slider
     (input)="onVolumeChange($event)"
-    thumbLabel
     value="100"
+    vertical="vertical"
   ></mat-slider>
 </mat-menu>
