@@ -29,13 +29,16 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     xs.subscribe((obs) => {
       this.xsDevice = obs.matches;
     });
+
+    // this.onResize();
   }
 
   public onResize() {
     this.expanded = !this.expanded;
-    this.bottomSheet.open(ExpandAudioPlayerComponent, {
+    const x = this.bottomSheet.open(ExpandAudioPlayerComponent, {
       panelClass: 'audio-player-expanded',
     });
+
   }
 
   public onVolumeChange({ value }: MatSliderChange) {

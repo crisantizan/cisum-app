@@ -1,0 +1,8 @@
+::ng-deep .audio-player-expanded {
+  height: 100vh;
+
+  &.mat-bottom-sheet-container-medium {
+    max-width: 700px;
+    width: 600px;
+  }
+}
