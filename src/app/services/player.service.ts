@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ExpandAudioPlayerComponent } from '../dialogs/expand-audio-player/expand-audio-player.component';
@@ -15,8 +15,13 @@ export class PlayerService {
 
   /* show the audio player panel */
   public openPanel() {
-    this.bottomSheet.open(ExpandAudioPlayerComponent, {
+    const ref = this.bottomSheet.open(ExpandAudioPlayerComponent, {
       panelClass: 'audio-player-expanded',
+    });
+
+    const suscription = ref.afterDismissed().subscribe(() => {
+      this.panelExpandedStatus.next(false);
+      suscription.unsubscribe();
     });
   }
 
