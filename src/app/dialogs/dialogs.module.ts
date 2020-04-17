@@ -4,10 +4,19 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { MaterialModule } from '../material.module';
 import { DirectivesModule } from '../common/directives/directives.module';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { ExpandAudioPlayerComponent } from './expand-audio-player/expand-audio-player.component';
 
 @NgModule({
-  declarations: [UserRegisterComponent, ConfirmComponent],
+  declarations: [
+    UserRegisterComponent,
+    ConfirmComponent,
+    ExpandAudioPlayerComponent,
+  ],
   imports: [CommonModule, MaterialModule, DirectivesModule],
-  exports: [UserRegisterComponent, ConfirmComponent],
+  exports: [
+    UserRegisterComponent,
+    ConfirmComponent,
+    ExpandAudioPlayerComponent,
+  ],
 })
 export class DialogsModule {}

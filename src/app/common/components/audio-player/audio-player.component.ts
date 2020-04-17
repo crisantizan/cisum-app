@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSliderChange } from '@angular/material/slider';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ExpandAudioPlayerComponent } from 'src/app/dialogs/expand-audio-player/expand-audio-player.component';
 
 @Component({
   selector: 'app-audio-player',
@@ -16,7 +18,10 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   public expanded: boolean = false;
   public xsDevice: boolean;
 
-  constructor(private breakpoint: BreakpointObserver) {}
+  constructor(
+    private breakpoint: BreakpointObserver,
+    private bottomSheet: MatBottomSheet
+  ) {}
 
   ngOnInit(): void {
     const xs = this.breakpoint.observe('(max-width: 440px)');
@@ -28,6 +33,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   public onResize() {
     this.expanded = !this.expanded;
+    this.bottomSheet.open(ExpandAudioPlayerComponent, {
+      panelClass: 'audio-player-expanded',
+    });
   }
 
   public onVolumeChange({ value }: MatSliderChange) {

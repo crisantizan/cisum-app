@@ -17,6 +17,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @NgModule({
   declarations: [],
@@ -37,6 +38,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatProgressBarModule,
     MatSliderModule,
     MatButtonToggleModule,
+    MatBottomSheetModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -55,6 +57,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatProgressBarModule,
     MatSliderModule,
     MatButtonToggleModule,
+    MatBottomSheetModule,
   ],
   providers: [
     {
