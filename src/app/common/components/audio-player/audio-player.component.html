@@ -1,11 +1,11 @@
 <div class="audio-container mat-elevation-z8">
   <div class="container" style="position: relative;">
-    <audio #songAudio>
+    <!-- <audio #songAudio>
       <source
         src="https://res.cloudinary.com/crisantizan/video/upload/v1586791809/cisum-test/artists/5e9484fce0d8c02d9fc096e7/albums/5e94853ae0d8c02d9fc096e9/songs/5e948570e0d8c02d9fc096eb/dm3ascermabojv0pd6sv.mp3"
       />
       Your browers doesn't support the feature
-    </audio>
+    </audio> -->
 
     <!-- song information -->
     <div class="info">
@@ -34,11 +34,13 @@
       </div>
 
       <div class="progress">
+        <span>0:30</span>
         <mat-slider
           class="mat-slider-custom"
           value=""
-          style="height: 45px;"
+          style="height: 45px; min-width: 100px;"
         ></mat-slider>
+        <span>4:21</span>
 
         <!-- volume button -->
         <button mat-icon-button [matMenuTriggerFor]="sliderVolume">

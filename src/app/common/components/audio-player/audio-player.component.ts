@@ -19,7 +19,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   constructor(private breakpoint: BreakpointObserver) {}
 
   ngOnInit(): void {
-    const xs = this.breakpoint.observe('(max-width: 350px)');
+    const xs = this.breakpoint.observe('(max-width: 440px)');
 
     xs.subscribe((obs) => {
       this.xsDevice = obs.matches;
