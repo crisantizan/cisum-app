@@ -1,20 +1,22 @@
 <div class="audio-container mat-elevation-z8">
   <div class="container" style="position: relative;">
-    <audio>
+    <audio #songAudio>
       <source
         src="https://res.cloudinary.com/crisantizan/video/upload/v1586791809/cisum-test/artists/5e9484fce0d8c02d9fc096e7/albums/5e94853ae0d8c02d9fc096e9/songs/5e948570e0d8c02d9fc096eb/dm3ascermabojv0pd6sv.mp3"
       />
       Your browers doesn't support the feature
     </audio>
 
+    <!-- song information -->
     <div class="info">
       <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" />
       <div>
         <span>Master of Puppets</span>
-        <span style="font-size: 12px;">Metallica</span>
+        <span>Metallica</span>
       </div>
     </div>
 
+    <!-- player section -->
     <div class="player" [ngClass]="{ 'small-device': xsDevice }">
       <div class="controls">
         <!-- right -->
@@ -49,12 +51,14 @@
         </button>
       </div>
     </div>
-
-    <!-- volume -->
-    <div class="volume"></div>
   </div>
 </div>
 
-<mat-menu #sliderVolume="matMenu" yPosition="above">
-  <mat-slider value="50" vertical="vertical"></mat-slider>
+<mat-menu #sliderVolume="matMenu" class="mat-menu-volume" yPosition="above">
+  <span class="perc">{{ volume }}</span>
+  <mat-slider
+    (input)="onVolumeChange($event)"
+    thumbLabel
+    value="100"
+  ></mat-slider>
 </mat-menu>
