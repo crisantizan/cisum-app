@@ -1,3 +1,5 @@
+@import "../../../assets/scss/variables";
+
 p.title {
   text-align: center;
   letter-spacing: 5px;
@@ -10,6 +12,7 @@ section.playing {
   align-items: center;
   position: relative;
   flex-direction: column;
+  width: 100%;
 
   .cover {
     max-width: 250px;
@@ -44,6 +47,8 @@ section.playing {
         &:last-child {
           font-size: 0.8rem;
           letter-spacing: 2px;
+          font-weight: bolder;
+          margin-top: 0.3rem;
         }
       }
     }
@@ -51,6 +56,32 @@ section.playing {
 
   .tracks {
     margin-top: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+
+    .track {
+      display: flex;
+      align-items: center;
+      color: $font-color-primary;
+      padding: 0 .5rem;
+      border-bottom: 1px solid rgba($color: #000000, $alpha: .2);
+
+      .number {
+        margin-right: .5rem;
+      }
+
+      span,
+      p {
+        line-height: 40px;
+        margin: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: $color-primary;
+        background-color: rgba($color: #000000, $alpha: .2);
+      }
+    }
   }
 }
 
@@ -58,6 +89,7 @@ section.playing {
   height: 100vh;
   max-width: 900px;
   margin-bottom: 50px;
+  padding-right: 24px;
 
   &.mat-bottom-sheet-container-medium {
     width: 800px;

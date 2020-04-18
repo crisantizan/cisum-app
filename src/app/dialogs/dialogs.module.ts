@@ -5,6 +5,7 @@ import { MaterialModule } from '../material.module';
 import { DirectivesModule } from '../common/directives/directives.module';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { ExpandAudioPlayerComponent } from './expand-audio-player/expand-audio-player.component';
+import { ComponentsModule } from '../common/components/components.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { ExpandAudioPlayerComponent } from './expand-audio-player/expand-audio-p
     ConfirmComponent,
     ExpandAudioPlayerComponent,
   ],
-  imports: [CommonModule, MaterialModule, DirectivesModule],
+  imports: [CommonModule, MaterialModule, DirectivesModule, ComponentsModule],
   exports: [
     UserRegisterComponent,
     ConfirmComponent,
