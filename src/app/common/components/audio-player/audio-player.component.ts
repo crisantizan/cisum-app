@@ -37,6 +37,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
         this.playerService.closePanel();
       }
     });
+
+    this.playerService.openPanel();
   }
 
   /** open/dismiss panel */

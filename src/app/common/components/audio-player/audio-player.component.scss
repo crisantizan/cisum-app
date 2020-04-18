@@ -6,7 +6,6 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  // padding: 0.5rem 0.5rem 0 0.5rem;
   padding: .5rem;
   background-color: rgb(36, 36, 36);
   z-index: 1200;
@@ -118,6 +117,7 @@
   max-width: 50px !important;
   min-width: 50px !important;
   width: 50px;
+  margin-bottom: 9px;
 
   .mat-menu-content {
     overflow-x: hidden;
