@@ -1,0 +1,41 @@
+.custom-input {
+  display: inline-flex;
+  position: relative;
+  min-width: 130px;
+  width: 60%;
+  max-width: 350px;
+
+  mat-icon {
+    position: absolute;
+    line-height: 36px;
+    padding-left: 0.5rem;
+    font-size: 18px;
+  }
+  input {
+    width: 100%;
+    background-color: transparent;
+    font-size: 14px;
+    color: white;
+    border: 1px solid rgba($color: #fff, $alpha: 0.15);
+    outline: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 2.2rem;
+
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+}
+
+nav.mat-tab-nav-bar {
+  width: 100%;
+  border-bottom: none;
+}
+
+nav {
+  width: 100%;
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}

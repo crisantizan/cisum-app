@@ -4,10 +4,21 @@ import { SongBoxComponent } from './song-box/song-box.component';
 import { MaterialModule } from 'src/app/material.module';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { WaveComponent } from './wave/wave.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [SongBoxComponent, AudioPlayerComponent, WaveComponent],
+  declarations: [
+    SongBoxComponent,
+    AudioPlayerComponent,
+    WaveComponent,
+    ToolbarComponent,
+  ],
   imports: [CommonModule, MaterialModule],
-  exports: [SongBoxComponent, AudioPlayerComponent, WaveComponent],
+  exports: [
+    SongBoxComponent,
+    AudioPlayerComponent,
+    WaveComponent,
+    ToolbarComponent,
+  ],
 })
 export class ComponentsModule {}

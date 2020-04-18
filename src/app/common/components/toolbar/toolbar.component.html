@@ -1,0 +1,53 @@
+<mat-toolbar style="padding: 0;">
+  <nav>
+    <div class="container">
+      <button mat-icon-button [matMenuTriggerFor]="searchMenu">
+        <mat-icon>queue_music</mat-icon>
+      </button>
+      <div class="custom-input">
+        <mat-icon>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search for a song"
+          [formControl]="searchControl"
+          [matAutocomplete]="auto"
+        />
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let song of filteredSongs | async" [value]="song">
+            {{ song }}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <img
+          src="https://www.w3schools.com/howto/img_avatar.png"
+          alt="Avatar"
+          class="avatar"
+        />
+      </button>
+    </div>
+  </nav>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>edit</mat-icon>
+    <span>Edit my data</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Close session</span>
+  </button>
+</mat-menu>
+
+<mat-menu #searchMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>people_outline</mat-icon>
+    <span>Artists</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>album</mat-icon>
+    <span>Albums</span>
+  </button>
+</mat-menu>
