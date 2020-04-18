@@ -18,15 +18,23 @@
   <div class="tracks">
     <div
       class="track"
-      *ngFor="let t of [0, 1, 2, 3, 4, 5]"
+      *ngFor="let t of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
       [class]="{ selected: t === 2 }"
     >
-      <span class="number">{{ t + 1 }}</span>
-      <img class="avatar" src="https://res.cloudinary.com/crisantizan/image/upload/v1586791740/cisum-test/artists/5e9484fce0d8c02d9fc096e7/albums/5e94853ae0d8c02d9fc096e9/s2g6juxcyor5jh60vo1h.jpg" alt="">
-      <button mat-icon-button>
-        <mat-icon>{{ t !== 2 ? "play_arrow" : "volume_up" }}</mat-icon>
-      </button>
-      <p>Master of Puppets</p>
+      <div>
+        <span class="number">{{ t + 1 }}</span>
+        <img
+          class="avatar"
+          src="https://res.cloudinary.com/crisantizan/image/upload/v1586791740/cisum-test/artists/5e9484fce0d8c02d9fc096e7/albums/5e94853ae0d8c02d9fc096e9/s2g6juxcyor5jh60vo1h.jpg"
+          alt=""
+        />
+        <button mat-icon-button>
+          <mat-icon>{{ t !== 2 ? "play_arrow" : "volume_up" }}</mat-icon>
+        </button>
+        <p>Master of Puppets</p>
+      </div>
+
+      <span class="duration">3:31</span>
     </div>
   </div>
 </section>
