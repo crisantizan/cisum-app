@@ -11,9 +11,9 @@ import { DialogsModule } from './dialogs/dialogs.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     DialogsModule,
   ],
   providers: [],
