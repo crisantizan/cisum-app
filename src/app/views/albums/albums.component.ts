@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-albums',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlbumsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
+    this.sharedService.changeTitle('Albums');
   }
 
 }
