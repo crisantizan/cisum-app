@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { WaveComponent } from './wave/wave.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     WaveComponent,
     ToolbarComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, RouterModule],
   exports: [
     SongBoxComponent,
     AudioPlayerComponent,

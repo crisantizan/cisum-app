@@ -1,35 +1,21 @@
-.custom-input {
-  display: inline-flex;
-  position: relative;
-  min-width: 130px;
-  width: 60%;
-  max-width: 350px;
-
-  mat-icon {
-    position: absolute;
-    line-height: 36px;
-    padding-left: 0.5rem;
-    font-size: 18px;
-  }
-  input {
-    width: 100%;
-    background-color: transparent;
-    font-size: 14px;
-    color: white;
-    border: 1px solid rgba($color: #fff, $alpha: 0.15);
-    outline: none;
-    border-radius: 5px;
-    padding: 0.5rem 1rem 0.5rem 2.2rem;
-
-    &::placeholder {
-      font-size: 14px;
-    }
-  }
-}
+@import "../../../../assets/scss/mixin-media-queries",
+  "../../../../assets/scss/variables";
 
 nav.mat-tab-nav-bar {
   width: 100%;
   border-bottom: none;
+}
+
+::ng-deep .mat-menu-padding {
+  .mat-menu-content:not(:empty) {
+    padding: 0;
+
+    button {
+      &.active {
+        background-color: rgba($color: #fff, $alpha: .1);
+      }
+    }
+  }
 }
 
 nav {
@@ -37,5 +23,119 @@ nav {
   .container {
     display: flex;
     justify-content: space-between;
+
+    .menu-button {
+      order: 1;
+    }
+
+    .navigation {
+      display: none;
+      order: 3;
+      height: 100%;
+
+      a {
+        text-decoration: none;
+        font-size: 14px;
+        color: $font-color-primary;
+        margin-left: 0.5rem;
+        padding: 0.7rem;
+        border-radius: 5px;
+        text-align: center;
+        position: relative;
+
+        &:hover {
+          color: $color-primary;
+        }
+
+        // create animated underline
+        &:before {
+          content: "";
+          position: absolute;
+          width: 90%;
+          height: 2px;
+          bottom: 5px;
+          left: 3.5px;
+          background: $font-color-primary;
+          visibility: hidden;
+          border-radius: 5px;
+          transform: scaleX(0);
+          transition: 0.25s linear;
+        }
+
+        // set other underline when link is active
+        &.active::before {
+          content: "";
+          position: absolute;
+          width: 90%;
+          bottom: 5px;
+          left: 3.5px;
+          background: $color-primary;
+          visibility: visible;
+          border-radius: 5px;
+          transform: scale(1);
+          transition: 0.25s linear;
+        }
+
+        // display underline
+        &:hover:before,
+        &:focus:before {
+          visibility: visible;
+          transform: scaleX(1);
+        }
+      }
+    }
+
+    .custom-input {
+      display: inline-flex;
+      position: relative;
+      min-width: 130px;
+      width: 60%;
+      max-width: 350px;
+      order: 2;
+
+      mat-icon {
+        position: absolute;
+        line-height: 40px;
+        padding-left: 0.7rem;
+        font-size: 18px;
+      }
+      input {
+        width: 100%;
+        background-color: transparent;
+        font-size: 14px;
+        color: white;
+        border: 1px solid rgba($color: #fff, $alpha: 0.15);
+        outline: none;
+        border-radius: 5px;
+        padding: 0.5rem 1rem 0.5rem 2.2rem;
+
+        &::placeholder {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .avatar-button {
+      order: 3;
+    }
+  }
+}
+
+@include media(md) {
+  nav {
+    .container {
+      .menu-btn {
+        display: none;
+      }
+
+      .navigation {
+        display: block;
+        order: 3;
+      }
+
+      .avatar-button {
+        order: 1;
+      }
+    }
   }
 }

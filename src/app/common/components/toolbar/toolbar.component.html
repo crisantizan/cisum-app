@@ -1,9 +1,27 @@
 <mat-toolbar style="padding: 0;">
   <nav>
     <div class="container">
-      <button mat-icon-button [matMenuTriggerFor]="searchMenu">
+      <!-- menu button -->
+      <button mat-icon-button [matMenuTriggerFor]="searchMenu" class="menu-btn">
         <mat-icon>queue_music</mat-icon>
       </button>
+      <!-- navigatiom -->
+      <div class="navigation">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Home
+        </a>
+        <a routerLink="/artists" routerLinkActive="active">
+          Artists
+        </a>
+        <a routerLink="/albums" routerLinkActive="active">
+          Albums
+        </a>
+      </div>
+      <!-- search bar -->
       <div class="custom-input">
         <mat-icon>search</mat-icon>
         <input
@@ -19,7 +37,8 @@
           </mat-option>
         </mat-autocomplete>
       </div>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
+      <!-- avatar button -->
+      <button mat-icon-button class="avatar-button" [matMenuTriggerFor]="menu">
         <img
           src="https://www.w3schools.com/howto/img_avatar.png"
           alt="Avatar"
@@ -30,7 +49,7 @@
   </nav>
 </mat-toolbar>
 
-<mat-menu #menu="matMenu">
+<mat-menu #menu="matMenu" class="mat-menu-padding">
   <button mat-menu-item>
     <mat-icon>edit</mat-icon>
     <span>Edit my data</span>
@@ -41,12 +60,23 @@
   </button>
 </mat-menu>
 
-<mat-menu #searchMenu="matMenu">
-  <button mat-menu-item>
+<mat-menu #searchMenu="matMenu" class="mat-menu-padding">
+  <button
+    mat-menu-item
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </button>
+
+  <button mat-menu-item routerLink="/artists" routerLinkActive="active">
     <mat-icon>people_outline</mat-icon>
     <span>Artists</span>
   </button>
-  <button mat-menu-item>
+
+  <button mat-menu-item routerLink="/albums" routerLinkActive="active">
     <mat-icon>album</mat-icon>
     <span>Albums</span>
   </button>
