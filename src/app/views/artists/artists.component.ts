@@ -3,6 +3,8 @@ import { SharedService } from 'src/app/services/shared.service';
 import { PageEvent } from '@angular/material/paginator';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { mediaQuery } from 'src/app/common/helpers/match-media.helper';
+import { HttpClient } from '@angular/common/http';
+import d from './data';
 
 @Component({
   selector: 'app-artists',
@@ -10,6 +12,7 @@ import { mediaQuery } from 'src/app/common/helpers/match-media.helper';
   styleUrls: ['./artists.component.scss'],
 })
 export class ArtistsComponent implements OnInit {
+  public data: any[] = d;
   // mat paginator output
   public pageEvent: PageEvent;
 
@@ -20,10 +23,12 @@ export class ArtistsComponent implements OnInit {
 
   constructor(
     private sharedService: SharedService,
-    private breakpoint: BreakpointObserver
+    private breakpoint: BreakpointObserver,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
+    console.log(this.paginate(10, 1));
     this.sharedService.changeTitle('Artists');
 
     this.breakpoint
@@ -59,6 +64,14 @@ export class ArtistsComponent implements OnInit {
           return;
         }
       });
+  }
+
+  private paginate(page: number = 1, perPage: number = 1) {
+    const from = (page - 1) * perPage;
+    const to = from + perPage;
+    const data = this.data.slice(from, to);
+
+    return { page, perPage, total: this.data.length, data };
   }
 
   /** get total pages available */
