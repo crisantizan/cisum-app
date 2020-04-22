@@ -1,29 +1,29 @@
 <section class="artists-container">
   <h1>Artists</h1>
+
   <div class="artists">
     <div
-      *ngFor="let i of displayValues"
+      *ngFor="let val of displayValues"
       matRipple
       class="artist-box mat-elevation-z4"
-      style="
-        background-image: url('https://res.cloudinary.com/crisantizan/image/upload/c_fill,h_350,w_250/v1/cisum/artists/5e948c09b6065a001e40f2c5/vcz1gsfuxt9og6rrsfja');
-      "
+      [style.background-image]="'url(' + val.url + ')'"
     >
-      <span>Metallica</span>
+      <span>{{ val.id }} - {{ val.title }}</span>
     </div>
   </div>
 
   <div class="paginator-data">
-    <h4>Page {{ currentPage }} of {{ totalPages }}</h4>
+    <h4>Page {{ currentPage }} of {{ pages }}</h4>
   </div>
 
   <mat-paginator
     class="custom-paginator"
-    [length]="length"
+    [length]="data.length"
     [pageSize]="pageSize"
+    [pageIndex]="currentPage - 1"
     hidePageSize
     showFirstLastButtons
-    (page)="pageEvent = $event"
+    (page)="onChangePage($event)"
   >
   </mat-paginator>
 </section>
