@@ -12,25 +12,15 @@
     </p>
   </div>
 
-  <div class="last-artists">
+  <div class="last-songs">
     <h3>Latest songs added</h3>
 
-    <div class="artists-box">
+    <div class="songs-box">
       <app-song-box
         *ngFor="let i of [0, 1, 2, 3]"
         [disabled]="songLoading"
         (onloading)="songLoading = $event"
       ></app-song-box>
-      <!-- <div
-        *ngFor="let i of [0, 1, 2, 3]"
-        matRipple
-        class="artist-box mat-elevation-z4"
-        style="
-          background-image: url('https://res.cloudinary.com/crisantizan/image/upload/c_fill,h_350,w_250/v1/cisum/artists/5e948c09b6065a001e40f2c5/vcz1gsfuxt9og6rrsfja');
-        "
-      >
-        <span>Metallica</span>
-      </div> -->
     </div>
   </div>
 </section>

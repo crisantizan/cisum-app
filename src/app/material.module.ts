@@ -18,6 +18,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -39,6 +40,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatSliderModule,
     MatButtonToggleModule,
     MatBottomSheetModule,
+    MatPaginatorModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -58,6 +60,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatSliderModule,
     MatButtonToggleModule,
     MatBottomSheetModule,
+    MatPaginatorModule,
   ],
   providers: [
     {
