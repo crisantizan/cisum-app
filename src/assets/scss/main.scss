@@ -1,4 +1,6 @@
 @import "./utilities", "./custom-mat-slider";
+// Loto font
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,100;1,300&display=swap");
 
 .background-pattern {
   background-color: #0d0716;
@@ -20,11 +22,9 @@ mat-form-field {
 
 * {
   box-sizing: border-box;
-}
 
-// .mat-menu-panel {
-//   min-width: 50px !important;
-// }
+  font-family: "Lato", sans-serif;
+}
 
 .avatar {
   vertical-align: middle;
@@ -45,8 +45,8 @@ mat-form-field {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgba($color: #000000, $alpha: .5);
-  border-radius: 5px
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  border-radius: 5px;
 }
 
 /* Handle on hover */
