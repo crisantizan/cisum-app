@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.openRegisterDialog();
+    // this.openRegisterDialog();
   }
 
   public openRegisterDialog() {
