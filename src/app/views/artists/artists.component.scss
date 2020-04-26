@@ -1,16 +1,15 @@
 @import "../../../assets/scss/mixin-media-queries",
   "../../../assets/scss/variables";
 
-.last-artists {
-  border-radius: 5px;
-  border: 1px solid rgba($color: #fff, $alpha: 0.1);
-  padding: 1rem;
-}
+$height-small: calc(100vh - 139px);
+$height: calc(100vh - 146px);
 
 .artists-container {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: $height-small;
 
   h1 {
     text-align: center;
@@ -52,10 +51,6 @@
     }
   }
 
-  // * {
-  //   padding: 0.5rem;
-  // }
-
   .paginator-data {
     margin: 0.5rem;
 
@@ -84,5 +79,8 @@
   }
 }
 
-@include media(sm) {
+@media (min-width: 600px) {
+  .artists-container {
+    height: $height;
+  }
 }
