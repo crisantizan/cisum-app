@@ -8,7 +8,7 @@ $height: calc(100vh - 146px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   height: $height-small;
 
   h1 {
@@ -72,6 +72,8 @@ $height: calc(100vh - 146px);
 
   .mat-paginator-outer-container {
     .mat-paginator-container {
+      min-height: 40px;
+
       .mat-paginator-range-actions {
         width: 100%;
         display: flex;
@@ -86,8 +88,21 @@ $height: calc(100vh - 146px);
 
 @include media(sm) {
   .artists-container {
+    justify-content: center;
+
     h1 {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  ::ng-deep .custom-paginator {
+    width: 100%;
+    border-radius: 5px;
+
+    .mat-paginator-outer-container {
+      .mat-paginator-container {
+        min-height: 56px;
+      }
     }
   }
 }
