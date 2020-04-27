@@ -13,6 +13,7 @@ $height: calc(100vh - 146px);
 
   h1 {
     text-align: center;
+    margin: 0;
   }
 
   .artists {
@@ -22,12 +23,10 @@ $height: calc(100vh - 146px);
 
     .artist-box {
       position: relative;
-      // width: 150px;
-      // height: 200px;
       max-width: 200px;
       width: 100%;
-      height: 250px;
-      // display: block;
+      max-height: 250px;
+      height: calc(100vh - 139px - 140px);
       padding: 0;
       background-size: cover;
       background-position: center;
@@ -81,6 +80,14 @@ $height: calc(100vh - 146px);
           display: none;
         }
       }
+    }
+  }
+}
+
+@include media(sm) {
+  .artists-container {
+    h1 {
+      margin-bottom: .5rem;
     }
   }
 }
