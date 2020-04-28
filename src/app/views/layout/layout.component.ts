@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-layout',
@@ -6,7 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor() {}
+  // public loading: boolean;
 
-  ngOnInit(): void {}
+  constructor(public sharedService: SharedService) {}
+
+  ngOnInit(): void {
+    // setTimeout(() => {
+    //   this.sharedService.loading$.subscribe((val) => {
+    //     console.log('STATE: ', val);
+    //     this.loading = val;
+    //   });
+    // }, 0);
+    // this.sharedService.loading.subscribe((value) => {
+    //   this.loading = value;
+    // });
+  }
 }

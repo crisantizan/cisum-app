@@ -1,3 +1,7 @@
+<div class="scroll-bar" *ngIf="sharedService.loading$ | async">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
 <app-toolbar></app-toolbar>
 <div class="container" style="padding: 1rem 0;">
   <router-outlet></router-outlet>

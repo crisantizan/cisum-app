@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ArtistService {
-  private url: string = 'https://jsonplaceholder.typicode.com/photos';
+  private url: string = 'https://rickandmortyapi.com/api/character';
 
   constructor(private http: HttpClient) {}
 

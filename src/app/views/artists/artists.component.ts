@@ -7,6 +7,7 @@ import {
   mediaQueryMf,
 } from 'src/app/common/helpers/match-media.helper';
 import d from './data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-artists',
@@ -19,7 +20,7 @@ export class ArtistsComponent implements OnInit {
   // mat paginator output
   public pageEvent: PageEvent;
 
-  public length: number = 100;
+  // public length: number = 100;
   public pageSize: number = 1;
   public pages: number;
 
@@ -27,7 +28,8 @@ export class ArtistsComponent implements OnInit {
 
   constructor(
     private sharedService: SharedService,
-    private breakpoint: BreakpointObserver
+    private breakpoint: BreakpointObserver,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -89,11 +91,6 @@ export class ArtistsComponent implements OnInit {
 
   private setPagination(pageSize: number) {
     this.pageSize = pageSize;
-    console.log({
-      pageSize: this.pageSize,
-      current: this.currentPage,
-      size: pageSize,
-    });
 
     const { pages, data, updatePage, page } = this.paginate(
       this.currentPage,
@@ -112,6 +109,10 @@ export class ArtistsComponent implements OnInit {
     this.pageEvent = event;
 
     this.displayValues = this.paginate(this.currentPage, this.pageSize).data;
+  }
+
+  public goToArtist(id: number | string) {
+    this.router.navigate([`/artists/${id}`]);
   }
 
   get currentPage() {
