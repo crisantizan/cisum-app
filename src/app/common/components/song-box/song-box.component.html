@@ -1,6 +1,9 @@
 <mat-card
   matRipple
-  [ngClass]="{ backdrop: showBackdrop || disabled, loading: loading }"
+  [ngClass]="{
+    backdrop: showBackdrop || disabled,
+    loading: loading && loadingBar
+  }"
 >
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   <div class="backdrop"></div>

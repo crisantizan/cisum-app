@@ -15,6 +15,7 @@ export class SongBoxComponent implements OnInit {
   @Input() public artist: { id: string | number; name: string };
   @Input() public playIcon: boolean = true;
   @Input() public disabled: boolean = false;
+  @Input() public loadingBar: boolean = true;
   @Input() public loading: boolean = false;
 
   // @Output() public onloading = new EventEmitter<boolean>();
