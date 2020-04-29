@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
 import { SharedService } from '../../services/shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-artist',
@@ -10,27 +11,27 @@ import { SharedService } from '../../services/shared.service';
 })
 export class ArtistComponent implements OnInit {
   public artist: any;
-  private artistId: number;
   public disabledCards: boolean = false;
+  private suscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private router: Router, private sharedService: SharedService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
-    
-    this.route.data.subscribe((data: { artist: object }) => {
+    this.suscription = this.route.data.subscribe((data: { artist: object }) => {
       this.artist = data.artist;
       console.log(this.artist);
-      this.sharedService.changeTitle(this.artist.name);
+      this.sharedService.changeTitle(`Artist | ${this.artist.name}`, false);
     });
+
+    this.suscription.unsubscribe();
   }
 
   public onSelectAlbum({ stopLoading, id }: SongBoxOnClickEmit) {
     this.disabledCards = true;
-    // stopLoading();
-    // console.log({stopLoading, id});
-    setTimeout(() => {
-      // stopLoading();
-      this.router.navigate([`/albums/${id}`]);
-    }, 2000);
+    this.router.navigate([`/albums/${id}`]);
   }
 }

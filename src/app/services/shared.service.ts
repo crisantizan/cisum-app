@@ -15,7 +15,7 @@ export class SharedService {
   }
 
   /** change app title */
-  public changeTitle(value: string) {
-    document.title = `${this.appTitle} | ${value}`;
+  public changeTitle(value: string, useTitle: boolean = true) {
+    document.title =  useTitle ? `${this.appTitle} | ${value}` : value;
   }
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from '../../services/shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-album',
@@ -7,12 +9,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./album.component.scss'],
 })
 export class AlbumComponent implements OnInit {
-  private albumId: number;
+  public album: any;
+  private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
-    this.albumId = Number(this.route.snapshot.params.id);
-    console.log({ albumId: this.albumId });
+    this.subscription = this.route.data.subscribe((data: { album: any }) => {
+      this.album = data.album;
+      console.log({ album: this.album });
+      this.sharedService.changeTitle(`Album | ${data.album.name}`, false);
+    });
+
+    this.subscription.unsubscribe();
   }
 }
