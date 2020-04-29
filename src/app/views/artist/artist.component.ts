@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-artist',
@@ -12,15 +13,14 @@ export class ArtistComponent implements OnInit {
   private artistId: number;
   public disabledCards: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router, private sharedService: SharedService) {}
 
   ngOnInit(): void {
-    // this.artistId = Number(this.route.snapshot.params.id);
-    // console.log({ artistId: this.artistId });
-
+    
     this.route.data.subscribe((data: { artist: object }) => {
       this.artist = data.artist;
       console.log(this.artist);
+      this.sharedService.changeTitle(this.artist.name);
     });
   }
 
