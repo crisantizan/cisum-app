@@ -8,6 +8,7 @@ import {
 } from 'src/app/common/helpers/match-media.helper';
 import d from './data';
 import { Router } from '@angular/router';
+import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
 
 @Component({
   selector: 'app-artists',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class ArtistsComponent implements OnInit {
   public data: any[] = d;
+  public disabledCards: boolean = false;
 
   // mat paginator output
   public pageEvent: PageEvent;
@@ -111,7 +113,8 @@ export class ArtistsComponent implements OnInit {
     this.displayValues = this.paginate(this.currentPage, this.pageSize).data;
   }
 
-  public goToArtist(id: number | string) {
+  public goToArtist({ stopLoading, id }: SongBoxOnClickEmit) {
+    this.disabledCards = true;
     this.router.navigate([`/artists/${id}`]);
   }
 

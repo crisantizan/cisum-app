@@ -2,17 +2,28 @@
   <h1>Artists</h1>
 
   <div class="artists">
-    <div
+    <app-song-box
+      *ngFor="let val of displayValues"
+      [id]="val.id"
+      [name]="val.name"
+      [image]="val.image"
+      [loadingBar]="false"
+      [disabled]="disabledCards"
+      [playIcon]="false"
+      (onClick)="goToArtist($event)"
+    ></app-song-box>
+
+    <!-- <div
       *ngFor="let val of displayValues"
       matRipple
       class="artist-box mat-elevation-z4"
       [style.background-image]="'url(' + val.image + ')'"
       (click)="goToArtist(val.id)"
     >
-    <div class="artist-data">
-      <span>{{ val.id }} - {{ val.name }}</span>
-    </div>
-    </div>
+      <div class="artist-data">
+        <span>{{ val.id }} - {{ val.name }}</span>
+      </div>
+    </div> -->
   </div>
 
   <div class="paginator-data">
