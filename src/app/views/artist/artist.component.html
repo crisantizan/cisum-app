@@ -12,5 +12,17 @@
 
   <div class="artist-albums">
     <h2>Albums</h2>
+
+    <div class="albums">
+      <app-song-box
+        *ngFor="let i of [0, 1, 2, 3]"
+        [id]="i"
+        [name]="artist.name"
+        [image]="artist.image"
+        [disabled]="disabledCards"
+        [playIcon]="false"
+        (onClick)="onSelectAlbum($event)"
+      ></app-song-box>
+    </div>
   </div>
 </section>

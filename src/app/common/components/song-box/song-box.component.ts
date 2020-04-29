@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { SongBoxOnClickEmit } from '../../../types/song-box-component.type';
 
 @Component({
   selector: 'app-song-box',
@@ -7,10 +8,20 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class SongBoxComponent implements OnInit {
   public showBackdrop: boolean = false;
-  public loading: boolean = false;
 
+  @Input() public id: string | number;
+  @Input() public name: string = 'Name';
+  @Input() public image: string;
+  @Input() public artist: { id: string | number; name: string };
+  @Input() public playIcon: boolean = true;
   @Input() public disabled: boolean = false;
-  @Output() public onloading = new EventEmitter<boolean>();
+  @Input() public loading: boolean = false;
+
+  // @Output() public onloading = new EventEmitter<boolean>();
+  @Output('onClick') public click = new EventEmitter<SongBoxOnClickEmit>();
+  @Output('onClickArtist') public clickArtist = new EventEmitter<
+    SongBoxOnClickEmit
+  >();
 
   constructor() {}
 
@@ -24,18 +35,35 @@ export class SongBoxComponent implements OnInit {
     this.showBackdrop = false;
   }
 
-  public onClickPlay() {
+  private stopLoading() {
+    this.loading = false;
+  }
+
+  public onClickPlay(fromIcon: boolean) {
     // avoid reload
-    if (this.loading) {
+    if (this.loading || (!fromIcon && !this.playIcon)) {
       return;
     }
 
     this.loading = true;
-    this.onloading.emit(true);
+    // emit event
+    this.click.emit({
+      stopLoading: this.stopLoading.bind(this),
+      id: this.id,
+    });
+  }
 
-    setTimeout(() => {
-      this.loading = false;
-      this.onloading.emit(false);
-    }, 3000);
+  /* click on artist */
+  public onClickArtist() {
+    // avoid reload
+    if (this.loading || !this.playIcon) {
+      return;
+    }
+
+    this.loading = true;
+    this.clickArtist.emit({
+      stopLoading: this.stopLoading.bind(this),
+      id: this.artist.id,
+    });
   }
 }

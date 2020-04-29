@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
 
 @Component({
   selector: 'app-artist',
@@ -9,8 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ArtistComponent implements OnInit {
   public artist: any;
   private artistId: number;
+  public disabledCards: boolean = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     // this.artistId = Number(this.route.snapshot.params.id);
@@ -20,5 +22,15 @@ export class ArtistComponent implements OnInit {
       this.artist = data.artist;
       console.log(this.artist);
     });
+  }
+
+  public onSelectAlbum({ stopLoading, id }: SongBoxOnClickEmit) {
+    this.disabledCards = true;
+    // stopLoading();
+    // console.log({stopLoading, id});
+    setTimeout(() => {
+      // stopLoading();
+      this.router.navigate([`/albums/${id}`]);
+    }, 2000);
   }
 }

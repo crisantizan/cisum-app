@@ -19,6 +19,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -41,6 +42,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonToggleModule,
     MatBottomSheetModule,
     MatPaginatorModule,
+    MatTooltipModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -61,6 +63,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonToggleModule,
     MatBottomSheetModule,
     MatPaginatorModule,
+    MatTooltipModule
   ],
   providers: [
     {

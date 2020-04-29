@@ -1,4 +1,6 @@
 .artist-container {
+  margin-bottom: 56px;
+
   .artist-info {
     display: flex;
     .artist-info-photo {
@@ -22,5 +24,13 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     padding: 1rem;
+
+    .albums {
+      display: flex;
+      flex-wrap: wrap;
+      * {
+        margin: .5rem;
+      }
+    }
   }
 }

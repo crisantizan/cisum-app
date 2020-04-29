@@ -18,8 +18,13 @@
     <div class="songs-box">
       <app-song-box
         *ngFor="let i of [0, 1, 2, 3]"
-        [disabled]="songLoading"
-        (onloading)="songLoading = $event"
+        [id]="i"
+        name="Master of Puppets recarged"
+        image="https://res.cloudinary.com/crisantizan/image/upload/c_fill,h_350,w_250/v1/cisum/artists/5e948c09b6065a001e40f2c5/vcz1gsfuxt9og6rrsfja"
+        [artist]="{ id: i, name: 'Metallica' }"
+        [disabled]="disabledCards"
+        (onClick)="onSelectSong($event)"
+        (onClickArtist)="onSelectArtist($event)"
       ></app-song-box>
     </div>
   </div>
