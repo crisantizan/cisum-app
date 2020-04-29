@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./artist.component.scss'],
 })
 export class ArtistComponent implements OnInit {
-  public artist: object;
+  public artist: any;
   private artistId: number;
 
   constructor(private route: ActivatedRoute) {}

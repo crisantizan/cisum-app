@@ -1,1 +1,16 @@
-<p>artist works!</p>
+<section class="artist-container">
+  <div class="artist-info">
+    <div
+      class="artist-info-photo"
+      [style.background-image]="'url(' + artist.image + ')'"
+    ></div>
+    <div class="artist-info-data">
+      <h1>{{ artist.name }}</h1>
+      <h4>{{ artist.location.name }}</h4>
+    </div>
+  </div>
+
+  <div class="artist-albums">
+    <h2>Albums</h2>
+  </div>
+</section>
