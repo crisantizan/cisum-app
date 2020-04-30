@@ -23,7 +23,6 @@ export class ArtistComponent implements OnInit {
   ngOnInit(): void {
     this.suscription = this.route.data.subscribe((data: { artist: object }) => {
       this.artist = data.artist;
-      console.log(this.artist);
       this.sharedService.changeTitle(`Artist | ${this.artist.name}`, false);
     });
 

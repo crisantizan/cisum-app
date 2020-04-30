@@ -4,10 +4,13 @@
       class="artist-info-photo"
       [style.background-image]="'url(' + artist.image + ')'"
     ></div>
-    <div class="artist-info-data">
-      <h1>{{ artist.name }}</h1>
-      <h4>{{ artist.location.name }}</h4>
-    </div>
+    <h1 class="artist-info-name">{{ artist.name }}</h1>
+    <h4 class="artist-info-description">
+      {{
+        artist.location.name +
+          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, voluptas."
+      }}
+    </h4>
   </div>
 
   <div class="artist-albums">
