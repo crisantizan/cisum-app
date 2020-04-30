@@ -50,7 +50,7 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu" class="mat-menu-padding">
-  <button mat-menu-item>
+  <button mat-menu-item (click)="openUserDataDialog()">
     <mat-icon>edit</mat-icon>
     <span>Edit my data</span>
   </button>

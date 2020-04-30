@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { UserDataComponent } from 'src/app/dialogs/user-data/user-data.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -18,13 +20,21 @@ export class ToolbarComponent implements OnInit {
   ];
   public filteredSongs: Observable<string[]>;
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.filteredSongs = this.searchControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
     );
+  }
+
+  public openUserDataDialog() {
+    this.dialog.open(UserDataComponent, {
+      maxWidth: 600,
+      autoFocus: true,
+      // disableClose: true,
+    });
   }
 
   /** searcher filter */
