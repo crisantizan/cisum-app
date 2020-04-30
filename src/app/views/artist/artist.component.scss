@@ -16,12 +16,12 @@
       min-width: 120px;
       max-width: 250px;
       min-height: 150px;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
     }
 
     .artist-info-name,
     .artist-info-description {
-      margin: 0 0 .5rem 0;
+      margin: 0 0 0.5rem 0;
     }
 
     .artist-info-name {
@@ -41,12 +41,57 @@
     border-radius: 5px;
     padding: 1rem;
 
+    .artist-albums-title {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      h2 {
+        margin: 0;
+      }
+    }
+
     .albums {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       * {
         margin: 0.5rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 550px) {
+  .artist-container {
+    .artist-info {
+      display: inline-block;
+
+      .artist-info-photo {
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin-right: 1rem;
+      }
+
+      .artist-info-name {
+        text-align: start;
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+      }
+
+      .artist-info-description {
+        max-width: calc(500px + 220px);
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 650px) {
+  .artist-container {
+    .artist-info {
+      .artist-info-photo {
+        height: 150px;
       }
     }
   }

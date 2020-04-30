@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
 import { SharedService } from '../../services/shared.service';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-artist',
@@ -17,7 +18,8 @@ export class ArtistComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -32,5 +34,9 @@ export class ArtistComponent implements OnInit {
   public onSelectAlbum({ stopLoading, id }: SongBoxOnClickEmit) {
     this.disabledCards = true;
     this.router.navigate([`/albums/${id}`]);
+  }
+
+  public backToPrevPage() {
+    this.location.back();
   }
 }

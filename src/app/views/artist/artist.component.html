@@ -8,17 +8,28 @@
     <h4 class="artist-info-description">
       {{
         artist.location.name +
-          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, voluptas."
+          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, voluptas. Amet consectetur adipisicing elit. Placeat, volup"
       }}
     </h4>
   </div>
 
   <div class="artist-albums">
-    <h2>Albums</h2>
+    <div class="artist-albums-title">
+      <button
+        mat-icon-button
+        matTooltip="Back to list"
+        matTooltipPosition="above"
+        matTooltipClass="song-data-tooltip"
+        (click)="backToPrevPage()"
+      >
+        <mat-icon style="font-size: 18px;">arrow_back_ios</mat-icon>
+      </button>
+      <h2>Albums</h2>
+    </div>
 
     <div class="albums">
       <app-song-box
-        *ngFor="let i of [0, 1, 2, 3]"
+        *ngFor="let i of [1, 2, 3, 4, 5]"
         [id]="i"
         [name]="artist.name"
         [image]="artist.image"
