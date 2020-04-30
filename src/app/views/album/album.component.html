@@ -1,1 +1,20 @@
-<p>album works!</p>
+<section class="album-container">
+  <div class="album-info">
+    <div
+      class="album-info-photo"
+      [style.background-image]="'url(' + album.image + ')'"
+    >
+      <div class="album-info-photo-footer">
+        <span>The Rolling Stone</span>
+        <span>1997</span>
+      </div>
+    </div>
+    <h1 class="album-info-name">{{ album.name }}</h1>
+    <h4 class="album-info-description">
+      {{
+        album.location.name +
+          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, voluptas. Amet consectetur adipisicing elit. Placeat, volup"
+      }}
+    </h4>
+  </div>
+</section>

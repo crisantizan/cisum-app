@@ -20,7 +20,6 @@ export class AlbumComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.route.data.subscribe((data: { album: any }) => {
       this.album = data.album;
-      console.log({ album: this.album });
       this.sharedService.changeTitle(`Album | ${data.album.name}`, false);
     });
 

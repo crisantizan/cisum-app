@@ -3,13 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { AlbumRoutingModule } from './album-routing.module';
 import { AlbumComponent } from './album.component';
-
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   declarations: [AlbumComponent],
-  imports: [
-    CommonModule,
-    AlbumRoutingModule
-  ]
+  imports: [CommonModule, AlbumRoutingModule, MaterialModule],
 })
-export class AlbumModule { }
+export class AlbumModule {}
