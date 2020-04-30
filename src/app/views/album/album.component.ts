@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-album',
@@ -14,7 +15,8 @@ export class AlbumComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
@@ -24,5 +26,9 @@ export class AlbumComponent implements OnInit {
     });
 
     this.subscription.unsubscribe();
+  }
+
+  public backToPrevPage() {
+    this.location.back();
   }
 }

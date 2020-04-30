@@ -1,3 +1,5 @@
+@import "../../../assets/scss/variables";
+
 .album-container {
   margin-bottom: 56px;
 
@@ -55,6 +57,89 @@
       text-align: justify;
     }
   }
+
+  .album-songs {
+    margin-top: 1rem;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+
+    border-radius: 5px;
+
+    .album-songs-title {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      padding: 1rem;
+
+      h2 {
+        margin: 0;
+      }
+    }
+
+    .tracks {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+      overflow-x: hidden;
+      margin-top: 0.5rem;
+
+      .track {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $font-color-primary;
+        padding: 0 0.5rem;
+        transition: transform 200ms ease;
+        padding: 0 1rem;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+        }
+
+        div {
+          display: flex;
+          align-items: center;
+
+          span,
+          p {
+            line-height: 40px;
+            margin: 0;
+          }
+
+          span.number {
+            width: 15px;
+            display: none;
+            margin-right: 0.5rem;
+            justify-content: center;
+          }
+
+          p {
+            min-width: 115px;
+          }
+        }
+
+        .duration {
+          margin-left: 0.5rem;
+          color: $font-color-secondary;
+          font-size: 11px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          p {
+            color: $color-primary;
+          }
+          background-color: rgba($color: #000000, $alpha: 0.1);
+
+          transform: scale(1.01);
+        }
+
+        &.selected {
+          background-color: rgba($color: #000000, $alpha: 0.3);
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 550px) {
@@ -88,6 +173,31 @@
     .album-info {
       .album-info-photo {
         height: 150px;
+      }
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .album-container {
+    .album-songs {
+      padding: 1rem;
+      .album-songs-title {
+        padding: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 400px) {
+  .album-container {
+    .album-songs {
+      .tracks {
+        .track {
+          div span.number {
+            display: block;
+          }
+        }
       }
     }
   }

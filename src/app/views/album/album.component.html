@@ -5,7 +5,7 @@
       [style.background-image]="'url(' + album.image + ')'"
     >
       <div class="album-info-photo-footer">
-        <span>The Rolling Stone</span>
+        <span>{{ album.name }}</span>
         <span>1997</span>
       </div>
     </div>
@@ -16,5 +16,44 @@
           " Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, voluptas. Amet consectetur adipisicing elit. Placeat, volup"
       }}
     </h4>
+  </div>
+
+  <div class="album-songs">
+    <div class="album-songs-title">
+      <button
+        mat-icon-button
+        matTooltip="Back to albums list"
+        matTooltipPosition="above"
+        matTooltipClass="song-data-tooltip"
+        (click)="backToPrevPage()"
+      >
+        <mat-icon style="font-size: 18px;">arrow_back_ios</mat-icon>
+      </button>
+      <h2>Track list</h2>
+    </div>
+
+    <div class="tracks">
+      <div
+        matRipple
+        class="track"
+        *ngFor="let t of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]"
+        [class]="{ selected: t === 2 }"
+      >
+        <div>
+          <span class="number">{{ t }}</span>
+          <img
+            class="avatar"
+            src="https://res.cloudinary.com/crisantizan/image/upload/v1586791740/cisum-test/artists/5e9484fce0d8c02d9fc096e7/albums/5e94853ae0d8c02d9fc096e9/s2g6juxcyor5jh60vo1h.jpg"
+            alt=""
+          />
+          <button mat-icon-button>
+            <mat-icon>{{ t !== 2 ? "play_arrow" : "volume_up" }}</mat-icon>
+          </button>
+          <p>{{ album.name }}</p>
+        </div>
+
+        <span class="duration">3:31</span>
+      </div>
+    </div>
   </div>
 </section>
