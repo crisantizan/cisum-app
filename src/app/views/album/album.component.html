@@ -22,7 +22,7 @@
     <div class="album-songs-title">
       <button
         mat-icon-button
-        matTooltip="Back to albums list"
+        matTooltip="Back"
         matTooltipPosition="above"
         matTooltipClass="song-data-tooltip"
         (click)="backToPrevPage()"
@@ -43,7 +43,7 @@
           <span class="number">{{ t }}</span>
           <img
             class="avatar"
-            src="https://res.cloudinary.com/crisantizan/image/upload/v1586791740/cisum-test/artists/5e9484fce0d8c02d9fc096e7/albums/5e94853ae0d8c02d9fc096e9/s2g6juxcyor5jh60vo1h.jpg"
+            [src]="album.image"
             alt=""
           />
           <button mat-icon-button>

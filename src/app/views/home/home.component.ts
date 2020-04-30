@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
 import data from '../artists/data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,10 @@ import data from '../artists/data';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private sharedService: SharedService) {}
+  constructor(
+    private sharedService: SharedService,
+    private router: Router
+  ) {}
   public latestSongs: any = data.slice(50, 54);
 
   /** when a song is loading */
@@ -29,13 +33,8 @@ export class HomeComponent implements OnInit {
     }, 2000);
   }
 
-  public onSelectArtist({ stopLoading, id }: SongBoxOnClickEmit) {
+  public onSelectArtist({ id }: SongBoxOnClickEmit) {
     this.disabledCards = true;
-    console.log({ artistId: id });
-
-    setTimeout(() => {
-      stopLoading();
-      this.disabledCards = false;
-    }, 2000);
+    this.router.navigate([`/artists/${id}`]);
   }
 }

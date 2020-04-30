@@ -23,6 +23,7 @@
         [image]="song.image"
         [artist]="{ id: song.id, name: song.species }"
         [disabled]="disabledCards"
+        [loadingBar]="false"
         (onClick)="onSelectSong($event)"
         (onClickArtist)="onSelectArtist($event)"
       ></app-song-box>
