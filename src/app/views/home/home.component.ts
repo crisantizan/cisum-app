@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
+import data from '../artists/data';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
 })
 export class HomeComponent implements OnInit {
   constructor(private sharedService: SharedService) {}
+  public latestSongs: any = data.slice(50, 54);
 
   /** when a song is loading */
   public disabledCards: boolean = false;
