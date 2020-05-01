@@ -2,7 +2,9 @@
 <form [formGroup]="form" (submit)="onSubmit()">
   <section mat-dialog-content>
     <!-- image -->
-    <div></div>
+    <div class="image-container">
+      <div #croppie></div>
+    </div>
     <!-- name -->
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">
       <mat-label>Name</mat-label>

@@ -1,9 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
 import {
-  MatDialogRef,
-  MatDialog,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+  Component,
+  OnInit,
+  Inject,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   FormBuilder,
   FormGroup,
@@ -14,7 +16,6 @@ import { regex } from '../../common/helpers/regex.helper';
 import { CustomValidators } from 'src/app/common/custom-validators';
 import { DialogService } from 'src/app/services/dialog.service';
 import { propsObjectEmpty } from 'src/app/common/helpers/object.helper';
-import { UserCreate } from 'src/app/types/user.type';
 import { UserRegisterData } from 'src/app/types/user-register-component.type';
 
 @Component({
@@ -25,6 +26,9 @@ import { UserRegisterData } from 'src/app/types/user-register-component.type';
 export class UserRegisterComponent implements OnInit {
   public hidePass = { new: true, verify: true };
   public form: FormGroup;
+
+  @ViewChild('croppie', { static: true })
+  public croppie: ElementRef<HTMLElement>;
 
   constructor(
     private dialogRef: MatDialogRef<UserRegisterComponent>,
@@ -49,7 +53,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+
     // update validator when password change
     this.password.valueChanges.subscribe((value) => {
       this.verifyPassword.setValidators([

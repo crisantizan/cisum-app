@@ -3784,6 +3784,11 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
+
 handle-thing@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
@@ -5461,6 +5466,15 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
+
+ngx-image-cropper@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/ngx-image-cropper/-/ngx-image-cropper-3.1.7.tgz#e28527c5bf688e8eb866c58bf5bdcf6cab59a779"
+  integrity sha512-g3TDTuOKqCY3ddrmmNLEM3ftpxkzUk9uLCOhbai+yRVUGvFqR25AtIvLlDKSD2gydo5eXAhtNA0F+BJIQjuEgw==
+  dependencies:
+    tslib "^1.9.0"
+  optionalDependencies:
+    hammerjs "^2.0.8"
 
 nice-try@^1.0.4:
   version "1.0.5"
