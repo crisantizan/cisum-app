@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { UserDataComponent } from 'src/app/dialogs/user-data/user-data.component';
+import { UserRegisterComponent } from 'src/app/dialogs/user-register/user-register.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -27,12 +27,17 @@ export class ToolbarComponent implements OnInit {
       startWith(''),
       map((value) => this._filter(value))
     );
+
+    this.openUserDataDialog();
   }
 
   public openUserDataDialog() {
-    this.dialog.open(UserDataComponent, {
+    this.dialog.open(UserRegisterComponent, {
       maxWidth: 600,
       autoFocus: true,
+      data: {
+        mode: 'edit'
+      }
       // disableClose: true,
     });
   }

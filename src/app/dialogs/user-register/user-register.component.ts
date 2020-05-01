@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import {
+  MatDialogRef,
+  MatDialog,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import {
   FormBuilder,
   FormGroup,
@@ -10,6 +14,8 @@ import { regex } from '../../common/helpers/regex.helper';
 import { CustomValidators } from 'src/app/common/custom-validators';
 import { DialogService } from 'src/app/services/dialog.service';
 import { propsObjectEmpty } from 'src/app/common/helpers/object.helper';
+import { UserCreate } from 'src/app/types/user.type';
+import { UserRegisterData } from 'src/app/types/user-register-component.type';
 
 @Component({
   selector: 'app-user-register',
@@ -23,7 +29,8 @@ export class UserRegisterComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<UserRegisterComponent>,
     public fb: FormBuilder,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    @Inject(MAT_DIALOG_DATA) public data: UserRegisterData
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -42,6 +49,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.data);
     // update validator when password change
     this.password.valueChanges.subscribe((value) => {
       this.verifyPassword.setValidators([
@@ -53,7 +61,6 @@ export class UserRegisterComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log('entró');
     if (this.form.invalid) {
       return;
     }
@@ -76,6 +83,10 @@ export class UserRegisterComponent implements OnInit {
           this.dialogRef.close();
         }
       });
+  }
+
+  get cardTitle() {
+    return this.data.mode === 'create' ? 'Create account' : 'Edit my data';
   }
 
   get name(): AbstractControl {

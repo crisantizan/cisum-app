@@ -1,6 +1,8 @@
-<h1 mat-dialog-title>Create account</h1>
+<h1 mat-dialog-title>{{ cardTitle }}</h1>
 <form [formGroup]="form" (submit)="onSubmit()">
   <section mat-dialog-content>
+    <!-- image -->
+    <div></div>
     <!-- name -->
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">
       <mat-label>Name</mat-label>

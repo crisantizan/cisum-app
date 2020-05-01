@@ -3,4 +3,5 @@ export interface UserCreate {
   surname: string;
   email: string;
   password: string;
+  image?: Blob | string;
 }
