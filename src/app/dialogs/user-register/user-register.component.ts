@@ -27,10 +27,10 @@ export class UserRegisterComponent implements OnInit {
   public hidePass = { new: true, verify: true };
   public form: FormGroup;
 
-  @ViewChild('viewer', { static: true })
+  @ViewChild('viewer', { static: false })
   public image: ElementRef<HTMLImageElement>;
 
-  @ViewChild('file', { static: true })
+  @ViewChild('file', { static: false })
   public file: ElementRef<HTMLInputElement>;
 
   constructor(
