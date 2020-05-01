@@ -2,8 +2,17 @@
 <form [formGroup]="form" (submit)="onSubmit()">
   <section mat-dialog-content>
     <!-- image -->
-    <div class="image-container">
-      <div #croppie></div>
+    <div class="image-container" *ngIf="data.mode === 'edit'">
+      <input #file type="file" (change)="readURL($event)" hidden="hidden" />
+      <img #viewer src="http://placehold.it/180" alt="your image" />
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        (click)="selectImageFile()"
+      >
+        Select image
+      </button>
     </div>
     <!-- name -->
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">

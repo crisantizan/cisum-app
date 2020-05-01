@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
       maxWidth: 600,
       autoFocus: true,
       disableClose: true,
+      data: {
+        mode: 'create',
+      },
     });
   }
 }
