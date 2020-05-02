@@ -10,7 +10,7 @@
     X
   </span>
   <input #fileRef type="file" (change)="readURL($event)" hidden="hidden" />
-  <img #viewer />
+  <img #viewer [src]="src" />
   <button
     type="button"
     mat-flat-button

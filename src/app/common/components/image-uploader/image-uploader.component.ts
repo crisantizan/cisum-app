@@ -4,6 +4,7 @@ import {
   ElementRef,
   Output,
   EventEmitter,
+  Input,
 } from '@angular/core';
 
 @Component({
@@ -12,6 +13,8 @@ import {
   styleUrls: ['./image-uploader.component.scss'],
 })
 export class ImageUploaderComponent {
+  @Input() src: string = '';
+
   @ViewChild('viewer', { static: true })
   public image: ElementRef<HTMLImageElement>;
 
@@ -48,7 +51,7 @@ export class ImageUploaderComponent {
 
   public onRemoveImage() {
     this.hasFile = false;
-    this.image.nativeElement.src = '';
+    this.image.nativeElement.src = this.src;
     this.changeImage.emit(null);
   }
 }
