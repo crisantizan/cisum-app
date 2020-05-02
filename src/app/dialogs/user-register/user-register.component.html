@@ -5,6 +5,7 @@
     <app-image-uploader
       *ngIf="data.mode === 'edit'"
       appGridArea="photo"
+      (changeImage)="onChangeImage($event)"
     ></app-image-uploader>
     <!-- name -->
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">

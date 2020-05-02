@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Inject,
-} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   FormBuilder,
@@ -19,11 +15,12 @@ import { UserRegisterData } from 'src/app/types/user-register-component.type';
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
-  styleUrls: ['./user-register.component.scss']
+  styleUrls: ['./user-register.component.scss'],
 })
 export class UserRegisterComponent implements OnInit {
   public hidePass = { new: true, verify: true };
   public form: FormGroup;
+  public imageFile: File = null;
 
   constructor(
     private dialogRef: MatDialogRef<UserRegisterComponent>,
@@ -65,6 +62,11 @@ export class UserRegisterComponent implements OnInit {
 
     // good
     console.log('... on submit');
+  }
+
+  public onChangeImage(file: File) {
+    this.imageFile = file;
+    console.log({ file: this.imageFile });
   }
 
   public onCancel() {

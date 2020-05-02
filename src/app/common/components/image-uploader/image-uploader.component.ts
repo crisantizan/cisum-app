@@ -1,20 +1,27 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'app-image-uploader',
   templateUrl: './image-uploader.component.html',
   styleUrls: ['./image-uploader.component.scss'],
 })
-export class ImageUploaderComponent implements OnInit {
+export class ImageUploaderComponent {
   @ViewChild('viewer', { static: true })
   public image: ElementRef<HTMLImageElement>;
 
-  @ViewChild('file', { static: true })
-  public file: ElementRef<HTMLInputElement>;
+  @ViewChild('fileRef', { static: true })
+  public fileRef: ElementRef<HTMLInputElement>;
 
-  constructor() {}
+  @Output()
+  public changeImage = new EventEmitter<File>();
 
-  ngOnInit(): void {}
+  public hasFile: boolean = null;
 
   public readURL({ target }: { target: HTMLInputElement }) {
     if (!target.files.length) {
@@ -31,10 +38,17 @@ export class ImageUploaderComponent implements OnInit {
 
     reader.readAsDataURL(file);
 
-    console.log(file);
+    this.hasFile = true;
+    this.changeImage.emit(file);
   }
 
   public selectImageFile() {
-    this.file.nativeElement.click();
+    this.fileRef.nativeElement.click();
+  }
+
+  public onRemoveImage() {
+    this.hasFile = false;
+    this.image.nativeElement.src = '';
+    this.changeImage.emit(null);
   }
 }

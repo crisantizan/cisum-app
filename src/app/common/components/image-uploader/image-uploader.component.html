@@ -1,5 +1,15 @@
 <section class="image-container">
-  <input #file type="file" (change)="readURL($event)" hidden="hidden" />
+  <span
+    matTooltip="Remove image"
+    matTooltipPosition="above"
+    matTooltipClass="tooltip-image"
+    matRipple
+    (click)="onRemoveImage()"
+    *ngIf="hasFile"
+  >
+    X
+  </span>
+  <input #fileRef type="file" (change)="readURL($event)" hidden="hidden" />
   <img #viewer />
   <button
     type="button"
