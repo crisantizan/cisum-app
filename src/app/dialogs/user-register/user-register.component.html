@@ -2,22 +2,10 @@
 <form [formGroup]="form" (submit)="onSubmit()">
   <section mat-dialog-content>
     <!-- image -->
-    <div
-      appGridArea="photo"
-      class="image-container"
+    <app-image-uploader
       *ngIf="data.mode === 'edit'"
-    >
-      <input #file type="file" (change)="readURL($event)" hidden="hidden" />
-      <img #viewer />
-      <button
-        type="button"
-        mat-flat-button
-        color="primary"
-        (click)="selectImageFile()"
-      >
-        Select image
-      </button>
-    </div>
+      appGridArea="photo"
+    ></app-image-uploader>
     <!-- name -->
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">
       <mat-label>Name</mat-label>

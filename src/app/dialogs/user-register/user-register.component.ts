@@ -2,8 +2,6 @@ import {
   Component,
   OnInit,
   Inject,
-  ElementRef,
-  ViewChild,
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
@@ -21,17 +19,11 @@ import { UserRegisterData } from 'src/app/types/user-register-component.type';
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
-  styleUrls: ['./user-register.component.scss'],
+  styleUrls: ['./user-register.component.scss']
 })
 export class UserRegisterComponent implements OnInit {
   public hidePass = { new: true, verify: true };
   public form: FormGroup;
-
-  @ViewChild('viewer', { static: false })
-  public image: ElementRef<HTMLImageElement>;
-
-  @ViewChild('file', { static: false })
-  public file: ElementRef<HTMLInputElement>;
 
   constructor(
     private dialogRef: MatDialogRef<UserRegisterComponent>,
@@ -64,28 +56,6 @@ export class UserRegisterComponent implements OnInit {
       ]);
       this.verifyPassword.updateValueAndValidity();
     });
-  }
-
-  public readURL({ target }: { target: HTMLInputElement }) {
-    if (!target.files.length) {
-      return;
-    }
-
-    const file = target.files[0];
-    const reader = new FileReader();
-    const img = this.image.nativeElement;
-
-    reader.onload = (e) => {
-      img.setAttribute('src', e.target.result as string);
-    };
-
-    reader.readAsDataURL(file);
-
-    console.log(file);
-  }
-
-  public selectImageFile() {
-    this.file.nativeElement.click();
   }
 
   public onSubmit() {

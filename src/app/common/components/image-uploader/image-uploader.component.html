@@ -1,0 +1,12 @@
+<section class="image-container">
+  <input #file type="file" (change)="readURL($event)" hidden="hidden" />
+  <img #viewer />
+  <button
+    type="button"
+    mat-flat-button
+    color="primary"
+    (click)="selectImageFile()"
+  >
+    Select image
+  </button>
+</section>
