@@ -12,7 +12,13 @@
     <mat-form-field appGridArea="name" class="has-icon" appearance="legacy">
       <mat-label>Name</mat-label>
       <mat-icon matPrefix>person_outline</mat-icon>
-      <input matInput formControlName="name" required autocomplete="off" />
+      <input
+        matInput
+        formControlName="name"
+        required
+        autocomplete="off"
+        autofocus
+      />
       <mat-error>{{ showNameError() }}</mat-error>
     </mat-form-field>
 

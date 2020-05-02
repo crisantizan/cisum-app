@@ -27,8 +27,6 @@ export class ToolbarComponent implements OnInit {
       startWith(''),
       map((value) => this._filter(value))
     );
-
-    this.openUserDataDialog();
   }
 
   public openUserDataDialog() {
@@ -37,8 +35,8 @@ export class ToolbarComponent implements OnInit {
       autoFocus: true,
       data: {
         mode: 'edit'
-      }
-      // disableClose: true,
+      },
+      disableClose: true,
     });
   }
 

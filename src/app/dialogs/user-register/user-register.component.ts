@@ -71,7 +71,7 @@ export class UserRegisterComponent implements OnInit {
 
   public onCancel() {
     // close this dialog
-    if (propsObjectEmpty(this.form.value)) {
+    if (propsObjectEmpty(this.form.value) && !this.imageFile) {
       this.dialogRef.close();
       return;
     }
