@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DialogsModule } from './dialogs/dialogs.module';
 import { LoadingInterceptor } from './common/interceptors/loading.interceptor';
+import { environment as env } from 'src/environments/environment';
+import { BaseUrlInterceptor } from './common/interceptors/base-url.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +20,12 @@ import { LoadingInterceptor } from './common/interceptors/loading.interceptor';
     DialogsModule,
   ],
   providers: [
+    { provide: 'BASE_API_URL', useValue: env.apiUrl },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseUrlInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,

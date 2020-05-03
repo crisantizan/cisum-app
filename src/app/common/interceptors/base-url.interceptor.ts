@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -6,13 +6,11 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-import { SharedService } from 'src/app/services/shared.service';
 import { requestIsExternal } from '../helpers/shared.helper';
 
 @Injectable()
-export class LoadingInterceptor implements HttpInterceptor {
-  constructor(private sharedService: SharedService) {}
+export class BaseUrlInterceptor implements HttpInterceptor {
+  constructor(@Inject('BASE_API_URL') private baseUrl: string) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -22,10 +20,8 @@ export class LoadingInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    this.sharedService.setLoading(true);
+    const apiReq = request.clone({ url: `${this.baseUrl}/${request.url}` });
 
-    return next
-      .handle(request)
-      .pipe(finalize(() => this.sharedService.setLoading(false)));
+    return next.handle(apiReq);
   }
 }
