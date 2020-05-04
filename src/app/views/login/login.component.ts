@@ -75,8 +75,8 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(({ response }) => {
         this.loading = false;
-        this.authService.token = response.token;
-        this.authService.user = response.user;
+        this.authService.setToken(response.token);
+        this.authService.setUser(response.user);
         this._router.navigate(['/']);
       });
   }

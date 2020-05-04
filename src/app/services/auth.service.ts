@@ -26,8 +26,22 @@ export class AuthService {
   /** user close session */
   public logout() {}
 
+  /** get data by token */
+  public whoami() {
+    return this.http.get<ApiResponse<User>>('/users/whoami');
+  }
+
   public clearUser() {
     this._user = null;
+  }
+
+  /** verify if a token already exists in local storage */
+  public hasLocalToken(): boolean {
+    return !!localStorage.getItem(LOCAL_TOKEN_KEY);
+  }
+
+  public setUser(data: User) {
+    this._user = data;
   }
 
   /** user is logged */
@@ -35,15 +49,11 @@ export class AuthService {
     return !!this._user;
   }
 
-  set user(data: User) {
-    this._user = data;
-  }
-
   get user() {
     return this._user;
   }
 
-  set token(token: string | null) {
+  public setToken(token: string | null) {
     // add
     if (token) {
       localStorage.setItem(LOCAL_TOKEN_KEY, token);
@@ -55,7 +65,7 @@ export class AuthService {
     this._token = token;
   }
 
-  get token() {
-    return this._token;
+  get token(): string | null {
+    return this._token || localStorage.getItem(LOCAL_TOKEN_KEY);
   }
 }

@@ -11,6 +11,7 @@ import { DialogsModule } from './dialogs/dialogs.module';
 import { LoadingInterceptor } from './common/interceptors/loading.interceptor';
 import { environment as env } from 'src/environments/environment';
 import { BaseUrlInterceptor } from './common/interceptors/base-url.interceptor';
+import { TokenInterceptor } from './common/interceptors/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,13 +21,18 @@ import { BaseUrlInterceptor } from './common/interceptors/base-url.interceptor';
     HttpClientModule,
     AppRoutingModule,
     DialogsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   providers: [
     { provide: 'BASE_API_URL', useValue: env.apiUrl },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BaseUrlInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true,
     },
     {
