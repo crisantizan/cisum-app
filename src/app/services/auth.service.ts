@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthLogin, AuthSignInResponse } from '../types/auth-service.type';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { User } from '../types/user.type';
+import { LOCAL_TOKEN_KEY } from '../common/constants/auth-service.constant';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public user: User;
+  private _user: User;
+  private _token: string | null = null;
 
   constructor(private http: HttpClient) {}
 
   /** user login */
   public singIn(data: AuthLogin): Observable<AuthSignInResponse> {
-    return this.http.post<AuthSignInResponse>('/users/login', data).pipe(
-      catchError(({ error }) => {
-        return throwError(error);
-      })
-    );
+    return this.http.post<AuthSignInResponse>('/users/login', data);
   }
 
   /** create a new user */
@@ -28,8 +25,36 @@ export class AuthService {
   /** user close session */
   public logout() {}
 
+  public clearUser() {
+    this._user = null;
+  }
+
   /** user is logged */
   get userIsLogged() {
-    return !!this.user;
+    return !!this._user;
+  }
+
+  set user(data: User) {
+    this._user = data;
+  }
+
+  get user() {
+    return this._user;
+  }
+
+  set token(token: string | null) {
+    // add
+    if (token) {
+      localStorage.setItem(LOCAL_TOKEN_KEY, token);
+    } else {
+      // remove
+      localStorage.removeItem(LOCAL_TOKEN_KEY);
+    }
+
+    this._token = token;
+  }
+
+  get token() {
+    return this._token;
   }
 }

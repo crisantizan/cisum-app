@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private authService: AuthService,
-    private sharedService: SharedService // private snackbar: MatSnackBar
+    private sharedService: SharedService,
+    private _router: Router
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(regex.EMAIL)]],
@@ -63,16 +65,18 @@ export class LoginComponent implements OnInit {
 
     res
       .pipe(
-        catchError((err) => {
-          console.log(err);
-          this.sharedService.openSnackbar(err.response, 3000);
+        catchError(({ error }) => {
+          console.log(error);
+          this.sharedService.openSnackbar(error.response, 3000);
           this.loading = false;
-          return err;
+          return error;
         })
       )
-      .subscribe((obs) => {
+      .subscribe(({response}) => {
         this.loading = false;
-        console.log(obs);
+        this.authService.token = response.token;
+        this.authService.user = response.user;
+        this._router.navigate(['/']);
       });
   }
 
