@@ -26,6 +26,7 @@ export class SharedService {
     this.snackbar.open(message, '', {
       duration,
       verticalPosition: 'top',
+      horizontalPosition: 'right',
       panelClass: 'custom-snackbar',
     });
   }

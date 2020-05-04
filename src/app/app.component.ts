@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SharedService } from './services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class AppComponent {
   constructor(
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    public sharedService: SharedService
   ) {
     // add svg icon
     this.matIconRegistry

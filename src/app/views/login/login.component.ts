@@ -58,15 +58,22 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.sharedService.openSnackbar('Probando desde el service', 3000);
-    // this.snackbar.open('Hello word', '', { duration: 2000 });
-    // this.loading = true;
-    // const res = this.authService.singIn(this.form.value);
+    this.loading = true;
+    const res = this.authService.singIn(this.form.value);
 
-    // res.subscribe((obs) => {
-    //   this.loading = false;
-    //   console.log(obs);
-    // });
+    res
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          this.sharedService.openSnackbar(err.response, 3000);
+          this.loading = false;
+          return err;
+        })
+      )
+      .subscribe((obs) => {
+        this.loading = false;
+        console.log(obs);
+      });
   }
 
   get email(): AbstractControl {

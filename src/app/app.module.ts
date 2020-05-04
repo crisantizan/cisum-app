@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 import { DialogsModule } from './dialogs/dialogs.module';
 import { LoadingInterceptor } from './common/interceptors/loading.interceptor';
 import { environment as env } from 'src/environments/environment';
@@ -18,6 +20,7 @@ import { BaseUrlInterceptor } from './common/interceptors/base-url.interceptor';
     HttpClientModule,
     AppRoutingModule,
     DialogsModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: 'BASE_API_URL', useValue: env.apiUrl },

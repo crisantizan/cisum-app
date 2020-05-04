@@ -15,7 +15,7 @@ export interface User {
   password: string;
   email: string;
   role: RoleType;
-  image?: Asset;
+  image: Asset;
   createdAt: string;
   updatedAt: string;
 }
