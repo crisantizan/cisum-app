@@ -14,6 +14,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
 import { Router } from '@angular/router';
+import { capitalize } from 'src/app/common/helpers/shared.helper';
 
 @Component({
   selector: 'app-login',
@@ -67,12 +68,12 @@ export class LoginComponent implements OnInit {
       .pipe(
         catchError(({ error }) => {
           console.log(error);
-          this.sharedService.openSnackbar(error.response, 3000);
+          this.sharedService.openSnackbar(capitalize(error.response), 3000);
           this.loading = false;
           return error;
         })
       )
-      .subscribe(({response}) => {
+      .subscribe(({ response }) => {
         this.loading = false;
         this.authService.token = response.token;
         this.authService.user = response.user;
