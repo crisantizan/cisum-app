@@ -3,11 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { AuthLogin, AuthSignInResponse } from '../types/auth-service.type';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { User } from '../types/user.type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  public user: User;
+
   constructor(private http: HttpClient) {}
 
   /** user login */
@@ -24,4 +27,9 @@ export class AuthService {
 
   /** user close session */
   public logout() {}
+
+  /** user is logged */
+  get userIsLogged() {
+    return !!this.user;
+  }
 }

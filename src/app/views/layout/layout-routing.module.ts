@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
+import { CanActivateChildAuthGuard } from 'src/app/common/guards/can-activate-child-auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivateChild: [CanActivateChildAuthGuard],
     children: [
       {
         path: '',
