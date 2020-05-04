@@ -9,7 +9,7 @@
       <mat-form-field class="has-icon" appearance="legacy">
         <mat-label>Email</mat-label>
         <mat-icon matPrefix>alternate_email</mat-icon>
-        <input matInput autofocus formControlName="email" autocomplete="off" />
+        <input matInput autofocus formControlName="email" />
         <mat-error>{{ showEmailError() }}</mat-error>
       </mat-form-field>
 
@@ -21,7 +21,6 @@
           matInput
           [type]="hidePass ? 'password' : 'text'"
           formControlName="password"
-          autocomplete="off"
         />
         <mat-error>{{ showPasswordError() }}</mat-error>
         <button

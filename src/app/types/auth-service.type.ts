@@ -7,7 +7,7 @@ export interface AuthLogin {
 }
 
 /** data when user is login */
-export interface AuthSignInResponse {
+export interface AuthSignIn {
   user: User;
   token: string;
 }

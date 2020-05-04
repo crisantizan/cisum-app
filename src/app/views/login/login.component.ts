@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
           console.log(error);
           this.sharedService.openSnackbar(capitalize(error.response), 3000);
           this.loading = false;
-          return error;
+          return throwError(error);
         })
       )
       .subscribe(({ response }) => {

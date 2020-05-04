@@ -6,3 +6,12 @@ export interface Asset {
 
 /** roles allowed values */
 export type RoleType = 'ADMIN' | 'USER';
+
+/** api data response */
+export interface ApiResponse<T> {
+  method: string;
+  path: string;
+  response: T;
+  status: number;
+  timestamp: string;
+}

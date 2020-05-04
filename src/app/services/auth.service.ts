@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthLogin, AuthSignInResponse } from '../types/auth-service.type';
+import { AuthLogin, AuthSignIn } from '../types/auth-service.type';
 import { Observable } from 'rxjs';
 import { User } from '../types/user.type';
 import { LOCAL_TOKEN_KEY } from '../common/constants/auth-service.constant';
+import { ApiResponse } from '../types/shared.type';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,8 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   /** user login */
-  public singIn(data: AuthLogin): Observable<AuthSignInResponse> {
-    return this.http.post<AuthSignInResponse>('/users/login', data);
+  public singIn(data: AuthLogin): Observable<ApiResponse<AuthSignIn>> {
+    return this.http.post<ApiResponse<AuthSignIn>>('/users/login', data);
   }
 
   /** create a new user */
