@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { requestIsExternal } from '../helpers/shared.helper';
+import { requestLoadSvgIcon } from '../helpers/shared.helper';
 
 @Injectable()
 export class BaseUrlInterceptor implements HttpInterceptor {
@@ -16,11 +16,11 @@ export class BaseUrlInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (!requestIsExternal(request.url)) {
+    if (requestLoadSvgIcon(request.url)) {
       return next.handle(request);
     }
 
-    const apiReq = request.clone({ url: `${this.baseUrl}/${request.url}` });
+    const apiReq = request.clone({ url: `${this.baseUrl}${request.url}` });
 
     return next.handle(apiReq);
   }

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   /** api endpoint */
-  apiUrl: 'https://cisum-api.herokuapp.com',
+  apiUrl: 'https://cisum-api.herokuapp.com/api',
 };
 
 /*

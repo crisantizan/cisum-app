@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   /** api endpoint */
-  apiUrl: 'https://cisum-api.herokuapp.com',
+  apiUrl: 'https://cisum-api.herokuapp.com/api',
 };

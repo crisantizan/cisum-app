@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { SharedService } from 'src/app/services/shared.service';
-import { requestIsExternal } from '../helpers/shared.helper';
+import { requestLoadSvgIcon } from '../helpers/shared.helper';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
@@ -18,7 +18,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (!requestIsExternal(request.url)) {
+    if (requestLoadSvgIcon(request.url)) {
       return next.handle(request);
     }
 
