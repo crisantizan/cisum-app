@@ -1,7 +1,7 @@
 <div class="login-container background-pattern">
   <p class="login-title">CISUM</p>
   <mat-card class="login-card">
-    <div class="login-form">
+    <form [formGroup]="form" class="login-form" (submit)="onSubmit()">
       <mat-card-title>
         Log into your account
       </mat-card-title>
@@ -9,15 +9,22 @@
       <mat-form-field class="has-icon" appearance="legacy">
         <mat-label>Email</mat-label>
         <mat-icon matPrefix>alternate_email</mat-icon>
-        <input matInput autofocus />
+        <input matInput autofocus formControlName="email" />
+        <mat-error>{{ showEmailError() }}</mat-error>
       </mat-form-field>
 
       <!-- password -->
       <mat-form-field class="has-icon" appearance="legacy">
         <mat-label>Password</mat-label>
         <mat-icon matPrefix>vpn_key</mat-icon>
-        <input matInput [type]="hidePass ? 'password' : 'text'" />
+        <input
+          matInput
+          [type]="hidePass ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <mat-error>{{ showPasswordError() }}</mat-error>
         <button
+          type="button"
           mat-icon-button
           matSuffix
           (click)="hidePass = !hidePass"
@@ -29,10 +36,11 @@
       </mat-form-field>
 
       <button
+        type="submit"
         class="login-btn"
         mat-raised-button
         color="primary"
-        routerLink="/"
+        [disabled]="form.invalid || loading"
       >
         LOGIN
       </button>
@@ -40,7 +48,7 @@
         Don't have an account?
         <a href="javascript:void(0)" (click)="openRegisterDialog()">sign up</a>
       </p>
-    </div>
+    </form>
     <div class="login-image"></div>
   </mat-card>
 </div>

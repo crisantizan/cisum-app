@@ -3,7 +3,6 @@ import { SharedService } from 'src/app/services/shared.service';
 import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
 import data from '../artists/data';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,19 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private sharedService: SharedService,
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private sharedService: SharedService, private router: Router) {}
   public latestSongs: any = data.slice(50, 54);
 
   /** when a song is loading */
   public disabledCards: boolean = false;
 
   ngOnInit() {
-    const res = this.authService.singIn({ email: 'crisa', password: '12345' });
-    res.subscribe((d) => console.log(true));
     this.sharedService.changeTitle('Online music player');
   }
 

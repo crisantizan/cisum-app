@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserRegisterComponent } from '../../dialogs/user-register/user-register.component';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
+import { CustomValidators } from 'src/app/common/custom-validators';
+import { regex } from 'src/app/common/helpers/regex.helper';
+import { AuthService } from 'src/app/services/auth.service';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +20,29 @@ import { UserRegisterComponent } from '../../dialogs/user-register/user-register
 })
 export class LoginComponent implements OnInit {
   public hidePass: boolean = true;
+  public loading: boolean = false;
 
-  constructor(public dialog: MatDialog) {}
+  public form: FormGroup;
 
-  ngOnInit(): void {
-    // this.openRegisterDialog();
+  constructor(
+    public dialog: MatDialog,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.pattern(regex.EMAIL)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.pattern(regex.PASSWORD),
+        ],
+      ],
+    });
   }
+
+  ngOnInit(): void {}
 
   public openRegisterDialog() {
     this.dialog.open(UserRegisterComponent, {
@@ -25,5 +53,53 @@ export class LoginComponent implements OnInit {
         mode: 'create',
       },
     });
+  }
+
+  public onSubmit() {
+    this.loading = true;
+    const res = this.authService.singIn(this.form.value);
+
+    res.subscribe((obs) => {
+      this.loading = false;
+      console.log(obs);
+    });
+  }
+
+  get email(): AbstractControl {
+    return this.form.get('email');
+  }
+
+  get password(): AbstractControl {
+    return this.form.get('password');
+  }
+
+  /** show error message of email field */
+  public showEmailError(): string | null {
+    if (this.email.hasError('required')) {
+      return 'required';
+    }
+
+    if (this.email.hasError('pattern')) {
+      return 'invalid email';
+    }
+
+    return null;
+  }
+
+  /** show error message of password field */
+  public showPasswordError(): string | null {
+    if (this.password.hasError('required')) {
+      return 'required';
+    }
+
+    if (this.password.hasError('minlength')) {
+      return 'must contain at least 6 digits';
+    }
+
+    if (this.password.hasError('pattern')) {
+      return 'field contains invalid characters';
+    }
+
+    return null;
   }
 }
