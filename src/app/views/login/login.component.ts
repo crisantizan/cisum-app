@@ -12,6 +12,7 @@ import { regex } from 'src/app/common/helpers/regex.helper';
 import { AuthService } from 'src/app/services/auth.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private sharedService: SharedService // private snackbar: MatSnackBar
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(regex.EMAIL)]],
@@ -56,13 +58,15 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.loading = true;
-    const res = this.authService.singIn(this.form.value);
+    this.sharedService.openSnackbar('Probando desde el service', 3000);
+    // this.snackbar.open('Hello word', '', { duration: 2000 });
+    // this.loading = true;
+    // const res = this.authService.singIn(this.form.value);
 
-    res.subscribe((obs) => {
-      this.loading = false;
-      console.log(obs);
-    });
+    // res.subscribe((obs) => {
+    //   this.loading = false;
+    //   console.log(obs);
+    // });
   }
 
   get email(): AbstractControl {

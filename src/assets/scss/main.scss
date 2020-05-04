@@ -1,4 +1,4 @@
-@import "./utilities", "./custom-mat-slider";
+@import "./utilities", "./custom-mat-slider", "./variables";
 // Loto font
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,100;1,300&display=swap");
 
@@ -56,4 +56,9 @@ mat-form-field {
 
 .cdk-global-scrollblock {
   position: static;
+}
+
+.custom-snackbar {
+  background-color: $color-primary;
+  font-size: 13px;
 }
