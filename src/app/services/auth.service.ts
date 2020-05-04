@@ -24,11 +24,22 @@ export class AuthService {
   public singUp() {}
 
   /** user close session */
-  public logout() {}
+  public logout(): Promise<ApiResponse<boolean>> {
+    return this.http
+      .post<ApiResponse<boolean>>('/users/logout', {})
+      .toPromise();
+  }
 
   /** get data by token */
-  public whoami() {
+  public whoami(): Observable<ApiResponse<User>> {
     return this.http.get<ApiResponse<User>>('/users/whoami');
+  }
+
+  /** user logout and remove temporal data */
+  public async logoutComplete() {
+    await this.logout();
+    this.clearUser();
+    this.setToken(null);
   }
 
   public clearUser() {

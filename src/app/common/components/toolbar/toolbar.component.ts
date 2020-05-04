@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { UserRegisterComponent } from 'src/app/dialogs/user-register/user-register.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -20,7 +22,11 @@ export class ToolbarComponent implements OnInit {
   ];
   public filteredSongs: Observable<string[]>;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private _authService: AuthService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
     this.filteredSongs = this.searchControl.valueChanges.pipe(
@@ -34,10 +40,15 @@ export class ToolbarComponent implements OnInit {
       maxWidth: 600,
       autoFocus: true,
       data: {
-        mode: 'edit'
+        mode: 'edit',
       },
       disableClose: true,
     });
+  }
+
+  public async onCloseSession() {
+    await this._authService.logoutComplete();
+    this._router.navigate(['/login']);
   }
 
   /** searcher filter */
