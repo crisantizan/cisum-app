@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthLogin, AuthSignIn } from '../types/auth-service.type';
 import { Observable } from 'rxjs';
-import { User } from '../types/user.type';
+import { User, UserCreate } from '../types/user.type';
 import { LOCAL_TOKEN_KEY } from '../common/constants/auth-service.constant';
 import { ApiResponse } from '../types/shared.type';
 
@@ -21,7 +21,12 @@ export class AuthService {
   }
 
   /** create a new user */
-  public singUp() {}
+  public singUp(data: UserCreate): Observable<ApiResponse<boolean>> {
+    return this.http.post<ApiResponse<boolean>>('/users', {
+      ...data,
+      role: 'USER',
+    });
+  }
 
   /** user close session */
   public logout(): Promise<ApiResponse<boolean>> {

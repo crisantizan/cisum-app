@@ -1,4 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   FormBuilder,
@@ -11,6 +17,12 @@ import { CustomValidators } from 'src/app/common/custom-validators';
 import { DialogService } from 'src/app/services/dialog.service';
 import { propsObjectEmpty } from 'src/app/common/helpers/object.helper';
 import { UserRegisterData } from 'src/app/types/user-register-component.type';
+import { AuthService } from 'src/app/services/auth.service';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { SharedService } from 'src/app/services/shared.service';
+import { ApiResponse } from 'src/app/types/shared.type';
+import { capitalize } from 'src/app/common/helpers/shared.helper';
 
 @Component({
   selector: 'app-user-register',
@@ -21,26 +33,35 @@ export class UserRegisterComponent implements OnInit {
   public hidePass = { new: true, verify: true };
   public form: FormGroup;
   public imageFile: File = null;
+  public loading: boolean = false;
+
+  @ViewChild('email', { static: true })
+  private emailRef: ElementRef<HTMLInputElement>;
 
   constructor(
     private dialogRef: MatDialogRef<UserRegisterComponent>,
     public fb: FormBuilder,
     private dialogService: DialogService,
-    @Inject(MAT_DIALOG_DATA) public data: UserRegisterData
+    @Inject(MAT_DIALOG_DATA) public data: UserRegisterData,
+    private _authService: AuthService,
+    private _sharedService: SharedService
   ) {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(regex.EMAIL)]],
+      name: ['Jesús', Validators.required],
+      surname: ['López', Validators.required],
+      email: [
+        'jesus@outlook.com',
+        [Validators.required, Validators.pattern(regex.EMAIL)],
+      ],
       password: [
-        '',
+        '0000000000',
         [
           Validators.required,
           Validators.minLength(6),
           Validators.pattern(regex.PASSWORD),
         ],
       ],
-      verifyPassword: [''],
+      verifyPassword: ['0000000000'],
     });
   }
 
@@ -60,8 +81,32 @@ export class UserRegisterComponent implements OnInit {
       return;
     }
 
-    // good
-    console.log('... on submit');
+    this.loading = true;
+    this._authService
+      .singUp(this.form.value)
+      .pipe(
+        catchError((err: { error: ApiResponse<any> }) => {
+          console.error(err.error.response);
+
+          // email error
+          if (
+            typeof err.error.response === 'object' &&
+            err.error.response.field === 'email'
+          ) {
+            this.email.setErrors({ exists: true });
+            this.emailRef.nativeElement.focus();
+          }
+
+          this.loading = false;
+          return throwError(err);
+        })
+      )
+      .subscribe(({ response }) => {
+        this.loading = false;
+        this._sharedService.openSnackbar('All right! you can log in now');
+
+        this.dialogRef.close();
+      });
   }
 
   public onChangeImage(file: File) {
@@ -137,6 +182,10 @@ export class UserRegisterComponent implements OnInit {
       return 'invalid email';
     }
 
+    if (this.email.hasError('exists')) {
+      return 'email passed already exists';
+    }
+
     return null;
   }
 
@@ -176,5 +225,13 @@ export class UserRegisterComponent implements OnInit {
     }
 
     return null;
+  }
+
+  get labelBtn() {
+    return !this.loading ? 'CREATE' : 'LOADING...';
+  }
+
+  get disabledBtn() {
+    return (this.form.dirty && this.form.invalid) || this.loading;
   }
 }
