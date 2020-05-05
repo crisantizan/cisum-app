@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>{{ cardTitle }}</h1>
-<form [formGroup]="form" (submit)="onSubmit()">
+<form [formGroup]="form" (submit)="onSubmit()" autocomplete="off">
   <section mat-dialog-content>
     <!-- image -->
     <app-image-uploader
@@ -44,6 +44,7 @@
         formControlName="email"
         required
         autocomplete="off"
+        cdkAutofill="off"
         #email
       />
       <mat-error>{{ showEmailError() }}</mat-error>
@@ -55,10 +56,11 @@
       <mat-icon matPrefix>vpn_key</mat-icon>
       <input
         matInput
-        required
+        [required]="data.mode === 'create'"
         formControlName="password"
         [type]="hidePass.new ? 'password' : 'text'"
-        autocomplete="off"
+        autocomplete="new-password"
+        cdkAutofill="off"
       />
       <mat-error>{{ showPasswordError() }}</mat-error>
       <button
@@ -85,7 +87,7 @@
       <mat-icon matPrefix>vpn_key</mat-icon>
       <input
         matInput
-        required
+        [required]="data.mode === 'create'"
         [type]="hidePass.verify ? 'password' : 'text'"
         formControlName="verifyPassword"
         autocomplete="off"

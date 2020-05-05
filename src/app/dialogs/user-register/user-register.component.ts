@@ -53,11 +53,7 @@ export class UserRegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern(regex.EMAIL)]],
       password: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.pattern(regex.PASSWORD),
-        ],
+        [Validators.minLength(6), Validators.pattern(regex.PASSWORD)],
       ],
       verifyPassword: [''],
     });
@@ -72,12 +68,25 @@ export class UserRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // remove required password
+    if (this.data.mode === 'create') {
+      this.password.setValidators([Validators.required]);
+    }
+
     // update validator when password change
     this.password.valueChanges.subscribe((value) => {
-      this.verifyPassword.setValidators([
-        Validators.required,
-        CustomValidators.compareValue(value),
-      ]);
+      if (!!value) {
+        this.verifyPassword.setValidators([
+          Validators.required,
+          CustomValidators.compareValue(value),
+        ]);
+      } else {
+        if (this.data.mode === 'edit') {
+          this.verifyPassword.setValue('');
+          this.verifyPassword.clearValidators();
+        }
+      }
+
       this.verifyPassword.updateValueAndValidity();
     });
   }
@@ -87,32 +96,34 @@ export class UserRegisterComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
-    this._authService
-      .singUp(this.form.value)
-      .pipe(
-        catchError((err: { error: ApiResponse<any> }) => {
-          console.error(err.error.response);
+    if (this.data.mode === 'create') {
+      this.loading = true;
+      this._authService
+        .singUp(this.form.value)
+        .pipe(
+          catchError((err: { error: ApiResponse<any> }) => {
+            console.error(err.error.response);
 
-          // email error
-          if (
-            typeof err.error.response === 'object' &&
-            err.error.response.field === 'email'
-          ) {
-            this.email.setErrors({ exists: true });
-            this.emailRef.nativeElement.focus();
-          }
+            // email error
+            if (
+              typeof err.error.response === 'object' &&
+              err.error.response.field === 'email'
+            ) {
+              this.email.setErrors({ exists: true });
+              this.emailRef.nativeElement.focus();
+            }
 
+            this.loading = false;
+            return throwError(err);
+          })
+        )
+        .subscribe(({ response }) => {
           this.loading = false;
-          return throwError(err);
-        })
-      )
-      .subscribe(({ response }) => {
-        this.loading = false;
-        this._sharedService.openSnackbar('All right! you can log in now');
+          this._sharedService.openSnackbar('All right! you can log in now');
 
-        this.dialogRef.close();
-      });
+          this.dialogRef.close();
+        });
+    }
   }
 
   public onChangeImage(file: File) {
@@ -121,10 +132,29 @@ export class UserRegisterComponent implements OnInit {
   }
 
   public onCancel() {
+    console.log(this.form.value);
+    console.log(this._authService.user);
     // close this dialog
     if (propsObjectEmpty(this.form.value) && !this.imageFile) {
       this.dialogRef.close();
       return;
+    }
+
+    if (this.data.mode === 'edit') {
+      // name, surname, email, image
+      const { user } = this._authService;
+      if (
+        user.name === this.name.value &&
+        user.surname === this.surname.value &&
+        user.email === this.email.value &&
+        user.image.path === this.imageSrc &&
+        !this.imageFile &&
+        !this.password.value &&
+        !this.verifyPassword.value
+      ) {
+        this.dialogRef.close();
+        return;
+      }
     }
 
     this.dialogService
@@ -242,6 +272,6 @@ export class UserRegisterComponent implements OnInit {
   }
 
   get disabledBtn() {
-    return (this.form.dirty && this.form.invalid) || this.loading;
+    return this.form.invalid || this.loading;
   }
 }
