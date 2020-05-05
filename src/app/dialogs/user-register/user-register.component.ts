@@ -34,6 +34,7 @@ export class UserRegisterComponent implements OnInit {
   public form: FormGroup;
   public imageFile: File = null;
   public loading: boolean = false;
+  public imageSrc: string = '';
 
   @ViewChild('email', { static: true })
   private emailRef: ElementRef<HTMLInputElement>;
@@ -60,10 +61,17 @@ export class UserRegisterComponent implements OnInit {
       ],
       verifyPassword: [''],
     });
+
+    if (this.data.mode === 'edit') {
+      const { user } = this._authService;
+      this.imageSrc = user.image.path;
+      this.name.setValue(user.name);
+      this.surname.setValue(user.surname);
+      this.email.setValue(user.email);
+    }
   }
 
   ngOnInit(): void {
-    console.log(this.data);
     // update validator when password change
     this.password.valueChanges.subscribe((value) => {
       this.verifyPassword.setValidators([
