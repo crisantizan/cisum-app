@@ -118,4 +118,12 @@ export class LoginComponent implements OnInit {
 
     return null;
   }
+
+  get disabledBtn() {
+    return (this.form.dirty && this.form.invalid) || this.loading;
+  }
+
+  get labelBtn() {
+    return !this.loading ? 'LOG IN' : 'LOADING...';
+  }
 }

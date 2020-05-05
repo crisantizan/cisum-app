@@ -40,9 +40,9 @@
         class="login-btn"
         mat-raised-button
         color="primary"
-        [disabled]="form.invalid || loading"
+        [disabled]="disabledBtn"
       >
-        LOGIN
+        {{ labelBtn }}
       </button>
       <p style="text-align: center;">
         Don't have an account?
