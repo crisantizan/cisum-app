@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.openRegisterDialog();
+    // this.openRegisterDialog();
   }
 
   public openRegisterDialog() {

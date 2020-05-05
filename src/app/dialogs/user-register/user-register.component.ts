@@ -42,30 +42,28 @@ export class UserRegisterComponent implements OnInit {
     private dialogRef: MatDialogRef<UserRegisterComponent>,
     public fb: FormBuilder,
     private dialogService: DialogService,
-    @Inject(MAT_DIALOG_DATA) public data: UserRegisterData,
     private _authService: AuthService,
-    private _sharedService: SharedService
+    private _sharedService: SharedService,
+    @Inject(MAT_DIALOG_DATA) public data: UserRegisterData
   ) {
     this.form = this.fb.group({
-      name: ['Jesús', Validators.required],
-      surname: ['López', Validators.required],
-      email: [
-        'jesus@outlook.com',
-        [Validators.required, Validators.pattern(regex.EMAIL)],
-      ],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(regex.EMAIL)]],
       password: [
-        '0000000000',
+        '',
         [
           Validators.required,
           Validators.minLength(6),
           Validators.pattern(regex.PASSWORD),
         ],
       ],
-      verifyPassword: ['0000000000'],
+      verifyPassword: [''],
     });
   }
 
   ngOnInit(): void {
+    console.log(this.data);
     // update validator when password change
     this.password.valueChanges.subscribe((value) => {
       this.verifyPassword.setValidators([
@@ -77,7 +75,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   public onSubmit() {
-    if (this.form.invalid) {
+    if (this.disabledBtn) {
       return;
     }
 
@@ -228,7 +226,11 @@ export class UserRegisterComponent implements OnInit {
   }
 
   get labelBtn() {
-    return !this.loading ? 'CREATE' : 'LOADING...';
+    return !this.loading
+      ? this.data.mode === 'create'
+        ? 'CREATE'
+        : 'EDIT'
+      : 'LOADING...';
   }
 
   get disabledBtn() {
