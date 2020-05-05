@@ -41,7 +41,7 @@ export class AuthService {
   }
 
   /** edit data */
-  public edit(data: Partial<UserCreate>): Observable<ApiResponse<User>> {
+  public edit(data: FormData): Observable<ApiResponse<User>> {
     return this.http.put<ApiResponse<User>>('/users', data);
   }
 

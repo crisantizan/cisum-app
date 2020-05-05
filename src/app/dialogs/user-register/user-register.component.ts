@@ -23,6 +23,7 @@ import { throwError } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
 import { ApiResponse } from 'src/app/types/shared.type';
 import { capitalize } from 'src/app/common/helpers/shared.helper';
+import { UserCreate } from 'src/app/types/user.type';
 
 @Component({
   selector: 'app-user-register',
@@ -102,32 +103,65 @@ export class UserRegisterComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
+
+    const handleOk = (mode: 'edit' | 'create') => {
+      this.loading = false;
+
+      this._sharedService.openSnackbar(
+        mode === 'create'
+          ? 'All right! you can log in now'
+          : 'Data updated successfully!'
+      );
+
+      this.dialogRef.close();
+    };
+
+    const handleError = () => {
+      return catchError((err: { error: ApiResponse<any> }) => {
+        console.error(err.error.response);
+
+        // email error
+        if (
+          typeof err.error.response === 'object' &&
+          err.error.response.field === 'email'
+        ) {
+          this.email.setErrors({ exists: true });
+          this.emailRef.nativeElement.focus();
+        }
+
+        this.loading = false;
+        return throwError(err);
+      });
+    };
+
     if (this.data.mode === 'create') {
-      this.loading = true;
       this._authService
         .singUp(this.form.value)
-        .pipe(
-          catchError((err: { error: ApiResponse<any> }) => {
-            console.error(err.error.response);
+        .pipe(handleError())
+        .subscribe(() => {
+          handleOk(this.data.mode);
+        });
+    } else {
+      // edit mode, send a FormData object
+      const fd = new FormData();
+      fd.append('name', this.name.value);
+      fd.append('surname', this.surname.value);
+      fd.append('email', this.email.value);
 
-            // email error
-            if (
-              typeof err.error.response === 'object' &&
-              err.error.response.field === 'email'
-            ) {
-              this.email.setErrors({ exists: true });
-              this.emailRef.nativeElement.focus();
-            }
+      if (!!this.password.value) {
+        fd.append('password', this.password.value);
+      }
 
-            this.loading = false;
-            return throwError(err);
-          })
-        )
-        .subscribe(({ response }) => {
-          this.loading = false;
-          this._sharedService.openSnackbar('All right! you can log in now');
+      if (!!this.imageFile) {
+        fd.append('image', this.imageFile);
+      }
 
-          this.dialogRef.close();
+      this._authService
+        .edit(fd)
+        .pipe(handleError())
+        .subscribe(() => {
+          handleOk(this.data.mode);
         });
     }
   }
