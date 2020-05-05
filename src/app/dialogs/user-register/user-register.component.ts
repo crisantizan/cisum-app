@@ -51,10 +51,7 @@ export class UserRegisterComponent implements OnInit {
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(regex.EMAIL)]],
-      password: [
-        '',
-        [Validators.minLength(6), Validators.pattern(regex.PASSWORD)],
-      ],
+      password: ['', []],
       verifyPassword: [''],
     });
 
@@ -70,7 +67,16 @@ export class UserRegisterComponent implements OnInit {
   ngOnInit(): void {
     // remove required password
     if (this.data.mode === 'create') {
-      this.password.setValidators([Validators.required]);
+      this.password.setValidators([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern(regex.PASSWORD),
+      ]);
+    } else {
+      this.password.setValidators([
+        Validators.minLength(6),
+        Validators.pattern(regex.PASSWORD),
+      ]);
     }
 
     // update validator when password change
@@ -132,8 +138,6 @@ export class UserRegisterComponent implements OnInit {
   }
 
   public onCancel() {
-    console.log(this.form.value);
-    console.log(this._authService.user);
     // close this dialog
     if (propsObjectEmpty(this.form.value) && !this.imageFile) {
       this.dialogRef.close();
@@ -164,6 +168,19 @@ export class UserRegisterComponent implements OnInit {
           this.dialogRef.close();
         }
       });
+  }
+
+  private sameData() {
+    const { user } = this._authService;
+    return (
+      user.name === this.name.value &&
+      user.surname === this.surname.value &&
+      user.email === this.email.value &&
+      user.image.path === this.imageSrc &&
+      !this.imageFile &&
+      !this.password.value &&
+      !this.verifyPassword.value
+    );
   }
 
   get cardTitle() {
@@ -272,6 +289,8 @@ export class UserRegisterComponent implements OnInit {
   }
 
   get disabledBtn() {
-    return this.form.invalid || this.loading;
+    return this.data.mode === 'create'
+      ? this.form.invalid || this.loading
+      : this.sameData() || this.form.invalid || this.loading;
   }
 }
