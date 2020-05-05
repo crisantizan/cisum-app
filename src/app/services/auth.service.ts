@@ -40,6 +40,11 @@ export class AuthService {
     return this.http.get<ApiResponse<User>>('/users/whoami');
   }
 
+  /** edit data */
+  public edit(data: Partial<UserCreate>): Observable<ApiResponse<User>> {
+    return this.http.put<ApiResponse<User>>('/users', data);
+  }
+
   /** user logout and remove temporal data */
   public async logoutComplete() {
     await this.logout();
