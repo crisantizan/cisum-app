@@ -175,7 +175,6 @@ export class UserRegisterComponent implements OnInit {
 
   public onChangeImage(file: File) {
     this.imageFile = file;
-    console.log({ file: this.imageFile });
   }
 
   public onCancel() {

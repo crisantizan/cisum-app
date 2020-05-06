@@ -6,6 +6,7 @@ import {
   EventEmitter,
   Input,
 } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-image-uploader',
@@ -26,6 +27,8 @@ export class ImageUploaderComponent {
 
   public hasFile: boolean = null;
 
+  constructor(private _sharedService: SharedService) {}
+
   public readURL({ target }: { target: HTMLInputElement }) {
     if (!target.files.length) {
       return;
@@ -34,6 +37,12 @@ export class ImageUploaderComponent {
     const file = target.files[0];
     const reader = new FileReader();
     const img = this.image.nativeElement;
+
+    // file is too big
+    if (file.size / 1000 > 350) {
+      this._sharedService.openSnackbar('Image is too big');
+      return;
+    }
 
     reader.onload = (e) => {
       img.setAttribute('src', e.target.result as string);
