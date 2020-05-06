@@ -7,7 +7,6 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { CustomValidators } from 'src/app/common/custom-validators';
 import { regex } from 'src/app/common/helpers/regex.helper';
 import { AuthService } from 'src/app/services/auth.service';
 import { catchError } from 'rxjs/operators';
@@ -47,9 +46,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // this.openRegisterDialog();
-  }
+  ngOnInit(): void {}
 
   public openRegisterDialog() {
     this.dialog.open(UserRegisterComponent, {
