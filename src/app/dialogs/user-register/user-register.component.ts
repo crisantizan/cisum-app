@@ -23,7 +23,7 @@ import { throwError } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
 import { ApiResponse } from 'src/app/types/shared.type';
 import { capitalize } from 'src/app/common/helpers/shared.helper';
-import { UserCreate } from 'src/app/types/user.type';
+import { UserCreate, User } from 'src/app/types/user.type';
 
 @Component({
   selector: 'app-user-register',
@@ -36,6 +36,7 @@ export class UserRegisterComponent implements OnInit {
   public imageFile: File = null;
   public loading: boolean = false;
   public imageSrc: string = '';
+  public user: User;
 
   @ViewChild('email', { static: true })
   private emailRef: ElementRef<HTMLInputElement>;
@@ -48,6 +49,12 @@ export class UserRegisterComponent implements OnInit {
     private _sharedService: SharedService,
     @Inject(MAT_DIALOG_DATA) public data: UserRegisterData
   ) {
+    const suscription = this._authService.user$.subscribe((user) => {
+      this.user = user;
+    });
+
+    suscription.unsubscribe();
+
     this.form = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -57,11 +64,10 @@ export class UserRegisterComponent implements OnInit {
     });
 
     if (this.data.mode === 'edit') {
-      const { user } = this._authService;
-      this.imageSrc = user.image.path;
-      this.name.setValue(user.name);
-      this.surname.setValue(user.surname);
-      this.email.setValue(user.email);
+      this.imageSrc = this.user.image.path;
+      this.name.setValue(this.user.name);
+      this.surname.setValue(this.user.surname);
+      this.email.setValue(this.user.email);
     }
   }
 
@@ -105,8 +111,9 @@ export class UserRegisterComponent implements OnInit {
 
     this.loading = true;
 
-    const handleOk = (mode: 'edit' | 'create') => {
+    const handleOk = (mode: 'edit' | 'create', user: User) => {
       this.loading = false;
+      this._authService.setUser(user);
 
       this._sharedService.openSnackbar(
         mode === 'create'
@@ -139,8 +146,8 @@ export class UserRegisterComponent implements OnInit {
       this._authService
         .singUp(this.form.value)
         .pipe(handleError())
-        .subscribe(() => {
-          handleOk(this.data.mode);
+        .subscribe((obs: ApiResponse<User>) => {
+          handleOk(this.data.mode, obs.response);
         });
     } else {
       // edit mode, send a FormData object
@@ -160,8 +167,8 @@ export class UserRegisterComponent implements OnInit {
       this._authService
         .edit(fd)
         .pipe(handleError())
-        .subscribe(() => {
-          handleOk(this.data.mode);
+        .subscribe((obs: ApiResponse<User>) => {
+          handleOk(this.data.mode, obs.response);
         });
     }
   }
@@ -172,6 +179,10 @@ export class UserRegisterComponent implements OnInit {
   }
 
   public onCancel() {
+    if (this.loading) {
+      return;
+    }
+
     // close this dialog
     if (propsObjectEmpty(this.form.value) && !this.imageFile) {
       this.dialogRef.close();
@@ -179,13 +190,11 @@ export class UserRegisterComponent implements OnInit {
     }
 
     if (this.data.mode === 'edit') {
-      // name, surname, email, image
-      const { user } = this._authService;
       if (
-        user.name === this.name.value &&
-        user.surname === this.surname.value &&
-        user.email === this.email.value &&
-        user.image.path === this.imageSrc &&
+        this.user.name === this.name.value &&
+        this.user.surname === this.surname.value &&
+        this.user.email === this.email.value &&
+        this.user.image.path === this.imageSrc &&
         !this.imageFile &&
         !this.password.value &&
         !this.verifyPassword.value
@@ -205,12 +214,11 @@ export class UserRegisterComponent implements OnInit {
   }
 
   private sameData() {
-    const { user } = this._authService;
     return (
-      user.name === this.name.value &&
-      user.surname === this.surname.value &&
-      user.email === this.email.value &&
-      user.image.path === this.imageSrc &&
+      this.user.name === this.name.value &&
+      this.user.surname === this.surname.value &&
+      this.user.email === this.email.value &&
+      this.user.image.path === this.imageSrc &&
       !this.imageFile &&
       !this.password.value &&
       !this.verifyPassword.value

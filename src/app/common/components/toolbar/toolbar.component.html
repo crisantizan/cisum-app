@@ -40,7 +40,7 @@
       <!-- avatar button -->
       <button mat-icon-button class="avatar-button" [matMenuTriggerFor]="menu">
         <img
-          src="../../../../assets/svg/avatar.svg"
+          [src]="avatarUrl || '../../../../assets/svg/avatar.svg'"
           alt="Avatar"
           class="avatar"
         />

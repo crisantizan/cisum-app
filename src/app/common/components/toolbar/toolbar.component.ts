@@ -21,12 +21,17 @@ export class ToolbarComponent implements OnInit {
     'Fiesta pagana - Mago de Oz',
   ];
   public filteredSongs: Observable<string[]>;
+  public avatarUrl: string = '';
 
   constructor(
     private dialog: MatDialog,
     private _authService: AuthService,
     private _router: Router
-  ) {}
+  ) {
+    this._authService.user$.subscribe((u) => {
+      this.avatarUrl = u.image.path;
+    });
+  }
 
   ngOnInit(): void {
     this.filteredSongs = this.searchControl.valueChanges.pipe(

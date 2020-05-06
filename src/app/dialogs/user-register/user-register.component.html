@@ -109,7 +109,14 @@
   </section>
 
   <section mat-dialog-actions>
-    <button mat-flat-button type="button" (click)="onCancel()">CANCEL</button>
+    <button
+      mat-flat-button
+      type="button"
+      (click)="onCancel()"
+      [disabled]="loading"
+    >
+      CANCEL
+    </button>
     <button
       [disabled]="disabledBtn"
       mat-raised-button

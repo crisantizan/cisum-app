@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthLogin, AuthSignIn } from '../types/auth-service.type';
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { User, UserCreate } from '../types/user.type';
 import { LOCAL_TOKEN_KEY } from '../common/constants/auth-service.constant';
 import { ApiResponse } from '../types/shared.type';
@@ -10,7 +10,7 @@ import { ApiResponse } from '../types/shared.type';
   providedIn: 'root',
 })
 export class AuthService {
-  private _user: User;
+  private _user = new BehaviorSubject<User | null>(null);
   private _token: string | null = null;
 
   constructor(private http: HttpClient) {}
@@ -21,8 +21,8 @@ export class AuthService {
   }
 
   /** create a new user */
-  public singUp(data: UserCreate): Observable<ApiResponse<boolean>> {
-    return this.http.post<ApiResponse<boolean>>('/users', {
+  public singUp(data: UserCreate): Observable<ApiResponse<User>> {
+    return this.http.post<ApiResponse<User>>('/users', {
       ...data,
       role: 'USER',
     });
@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   public clearUser() {
-    this._user = null;
+    this._user.next(null);
   }
 
   /** verify if a token already exists in local storage */
@@ -62,16 +62,16 @@ export class AuthService {
   }
 
   public setUser(data: User) {
-    this._user = data;
+    this._user.next(data);
   }
 
   /** user is logged */
   get userIsLogged() {
-    return !!this._user;
+    return !!this._user.value;
   }
 
-  get user() {
-    return this._user;
+  get user$() {
+    return this._user.asObservable();
   }
 
   public setToken(token: string | null) {
