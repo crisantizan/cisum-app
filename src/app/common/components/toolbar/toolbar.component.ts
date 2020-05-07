@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserRegisterComponent } from 'src/app/dialogs/user-register/user-register.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -26,7 +27,8 @@ export class ToolbarComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private _authService: AuthService,
-    private _router: Router
+    private _router: Router,
+    private _dialogService: DialogService,
   ) {
     this._authService.user$.subscribe((u) => {
       this.avatarUrl = u.image.path;
@@ -51,9 +53,20 @@ export class ToolbarComponent implements OnInit {
     });
   }
 
-  public async onCloseSession() {
+  private async _closeSession() {
     await this._authService.logoutComplete();
     this._router.navigate(['/login']);
+  }
+
+  public async confirmCloseSession() {
+    this._dialogService.openConfirm({
+      title: 'Are you sure?',
+      body: 'Confirm close session?',
+    }).subscribe(res => {
+      if (res) {
+        this._closeSession();
+      }
+    });
   }
 
   /** searcher filter */
