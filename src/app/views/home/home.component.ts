@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { SongBoxOnClickEmit } from '../../types/song-box-component.type';
 import data from '../artists/data';
-import { Router } from '@angular/router';
-import { SongService } from 'src/app/services/song.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SongMin } from 'src/app/types/song.type';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private router: Router,
-    private _songService: SongService
+    private _route: ActivatedRoute
   ) {}
   public latestSongs: any = data.slice(50, 54);
 
@@ -23,8 +23,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.sharedService.changeTitle('Online music player');
-    const songs = this._songService.latest;
-    songs.subscribe((d) => console.log(d));
+
+    this._route.data.subscribe((d: { latestSongs: SongMin[] }) => {
+      console.log(d.latestSongs);
+    });
   }
 
   public onSelectSong({ stopLoading, id }: SongBoxOnClickEmit) {
