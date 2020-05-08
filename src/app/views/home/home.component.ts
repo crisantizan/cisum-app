@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private _route: ActivatedRoute
   ) {}
-  public latestSongs: any = data.slice(50, 54);
+  public latestSongs: SongMin[];
 
   /** when a song is loading */
   public disabledCards: boolean = false;
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     this.sharedService.changeTitle('Online music player');
 
     this._route.data.subscribe((d: { latestSongs: SongMin[] }) => {
-      console.log(d.latestSongs);
+      this.latestSongs = d.latestSongs;
     });
   }
 
