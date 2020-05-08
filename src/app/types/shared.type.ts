@@ -15,3 +15,19 @@ export interface ApiResponse<T> {
   status: number;
   timestamp: string;
 }
+
+/** api response with paginated results */
+export interface PaginateResponse<T> {
+  docs: T;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  limit: number;
+  nextPage: number;
+  page: number;
+  pagingCounter: number;
+  prevPage: null | number;
+  totalDocs: number;
+  totalPages: number;
+}
+
+export type PaginateApiResponse<T> = ApiResponse<PaginateResponse<T>>;
