@@ -24,7 +24,7 @@
           <mat-icon>fast_rewind</mat-icon>
         </button>
         <!-- play -->
-        <button mat-icon-button class="play-btn">
+        <button mat-icon-button class="play-btn" (click)="play()">
           <mat-icon>{{ playerIcon }}</mat-icon>
         </button>
         <!-- left -->
@@ -34,13 +34,13 @@
       </div>
 
       <div class="progress">
-        <span>0:30</span>
+        <span>{{ currentTime }}</span>
         <mat-slider
           class="mat-slider-custom"
-          value=""
+          [value]="progress"
           style="height: 45px; min-width: 100px;"
         ></mat-slider>
-        <span>4:21</span>
+        <span>{{ duration }}</span>
 
         <!-- volume button -->
         <button mat-icon-button [matMenuTriggerFor]="sliderVolume">
