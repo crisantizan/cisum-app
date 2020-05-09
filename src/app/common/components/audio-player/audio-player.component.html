@@ -36,9 +36,15 @@
       <div class="progress">
         <span>{{ currentTime }}</span>
         <mat-slider
+          #matSliderPlayer
           class="mat-slider-custom"
+          [max]="matSliderMax"
+          [min]="0"
           [value]="progress"
           style="height: 45px; min-width: 100px;"
+          step="0.000001"
+          (input)="onProgressChange($event)"
+          [disabled]="!playing"
         ></mat-slider>
         <span>{{ duration }}</span>
 

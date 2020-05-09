@@ -6,7 +6,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { MatSliderChange } from '@angular/material/slider';
+import { MatSliderChange, MatSlider } from '@angular/material/slider';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
@@ -17,6 +17,9 @@ import { PlayerService } from 'src/app/services/player.service';
 export class AudioPlayerComponent implements OnInit, OnDestroy {
   // @ViewChild('songAudio', { static: true })
   // private _audioEl: ElementRef<HTMLAudioElement>;
+  @ViewChild('matSliderPlayer', { static: true })
+  private matSliderPlayer: MatSlider;
+
   private _audio = new Audio();
 
   public volume: number = 100;
@@ -30,6 +33,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   public playing: boolean = false;
   public duration: string = '';
   public currentTime: string = '';
+  private _manualUpdate: boolean = false;
+  public matSliderMax: number = 1;
+  private _lastTypingTime = 0;
 
   constructor(
     private breakpoint: BreakpointObserver,
@@ -38,7 +44,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const xs = this.breakpoint.observe('(max-width: 440px)');
-
+    console.log(this.matSliderPlayer);
     xs.subscribe((obs) => {
       this.xsDevice = obs.matches;
     });
@@ -53,13 +59,28 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
       }
     });
 
-    this._audio.ontimeupdate = (e) => {
+    this._audio.ontimeupdate = () => {
+      if (this._manualUpdate) {
+        return;
+      }
+
       this.progress = (this._audio.currentTime * 100) / this._audio.duration;
 
       this.currentTime = this._getTimeString(this._audio.currentTime);
+      // console.log(this._audio.currentTime);
+
+      if (this._manualUpdate) {
+        this._manualUpdate = false;
+      }
+      // console.log(this.progress);
       // console.log('duración: ', audio.duration);
       // console.log('trasncurrido: ', audio.currentTime);
       // console.log(this._transformToSeconds(audio.currentTime));
+    };
+
+    this._audio.onended = () => {
+      this.currentTime = '';
+      this.duration = '';
     };
 
     this._audio.src =
@@ -85,12 +106,34 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   public play() {
     if (!this.duration) {
       this.duration = this._getTimeString(this._audio.duration);
+      this.matSliderMax = this._audio.duration;
     }
 
     !this.playing ? this._audio.play() : this._audio.pause();
     this.playing = !this.playing;
 
     this.playerIcon = this.playerIcon === 'pause' ? 'play_arrow' : 'pause';
+  }
+
+  public onProgressChange(data: MatSliderChange) {
+    // console.log(data.value);
+    this._manualUpdate = true;
+
+    this._audio.currentTime = data.value;
+    this.currentTime = this._getTimeString(this._audio.currentTime);
+    // this.progress = (this._audio.currentTime * 100) / this._audio.duration;
+
+    // this._lastTypingTime = Date.now();
+
+    // setTimeout(() => {
+    //   const typingTimer = new Date().getTime();
+    //   // Tiempo trascurrido entre ambos
+    //   const timeDiff = typingTimer - this._lastTypingTime;
+
+    //   if (timeDiff >= 300) {
+    //     this.matSliderPlayer.blur();
+    //   }
+    // }, 300);
   }
 
   /** open/dismiss panel */
